@@ -2,7 +2,8 @@
 .venv/
 venv/
 env/
-notes/
+# AI 生成的记录放这里，不进 Git（自己的学习记录在 notes/ 下，保留版本历史）
+/notes/ai/
 # Python 缓存
 __pycache__/
 *.py[cod]
