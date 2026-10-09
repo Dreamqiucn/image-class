@@ -1,0 +1,24 @@
+# 虚拟环境（两台电脑各自维护，绝不提交）
+.venv/
+venv/
+env/
+notes/
+# Python 缓存
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# 数据集与训练产物（体积大，不进 Git）
+data/
+outputs/
+*.pth
+*.pt
+
+# Jupyter
+.ipynb_checkpoints/
+
+# 编辑器与系统文件
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
