@@ -1,4 +1,5 @@
 from pathlib import Path
+from datetime import datetime
 #import os
 import sys
 from count_labels import count_labels
@@ -37,13 +38,14 @@ def save_csv(counts, p):
     # Path(str(p) + "/output").mkdir(parents=True,exist_ok=True) exist_ok直接替代if
     #这一种和下面的是一样的效果，只是没使用/然后p.name是保留最后的一部分内容，所以转成字符串需要str
     (p / "output").mkdir(parents=True,exist_ok=True)
-    with open(f"{p}/output/suffixes.csv","w",encoding="utf-8-sig",newline="") as file:
+    timenow= datetime.now().strftime("_%Y-%m-%d_%H-%M-%S")
+    with open(f"{p}/output/suffixes_"+timenow+".csv","w",encoding="utf-8-sig",newline="") as file:
     #with as file是打开后自动关闭创建的这个文件 "w"是写入模式， newline不动他就好了
         writer = csv.writer(file)
         writer.writerow(["后缀","数目"])
         for suffix ,count in counts.items():
             writer.writerow([suffix,count])
-    print("文件已输出至"+f"{p.resolve()}/output/suffixes.csv")
+    print("文件已输出至"+f"{p.resolve()}/output/suffixes_{timenow}.csv")
 def ask_dir():
     global p
     if len(sys.argv)<2:
@@ -62,12 +64,13 @@ def ask_dir():
         print("请输入文件夹路径")
         return ask_dir()
 if __name__ == "__main__":
-    excluded={".venv", ".git", "__pycache__"}#排除的文件夹
+    excluded={".venv", ".git", "__pycache__","output"}#排除的文件夹
     #sonfiles=[f.name for f in p.rglob("*") if f.name!=".venv"]
     #.name是为了字符串 不然就是WindowsPath('.venv')，rglob包括子文件夹。glob是只有这一层的
     ##注意 name只会保留最后一块内容作为字符串比如说Path(a/b/c)，使用了name会变成c
     # 这个只会去掉venv文件夹，不会去掉文件夹的内容
     # print(count_files(p, {".venv", ".git", "__pycache__"}))
     ask_dir()
-    print_summary(count_files(p, excluded))
-    save_csv(count_files(p,excluded),p)
+    counts=count_files(p,excluded)
+    print_summary(counts)
+    save_csv(counts,p)

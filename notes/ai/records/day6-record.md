@@ -68,6 +68,57 @@
 
 检查项目 .vscode/settings.json 未覆盖这些设置；修改后解析用户设置并核对生效配置值。区分普通名称/方法提示与 AI 行内续写，后续不再一并关闭普通建议。未安装或卸载扩展。
 
+### 9. “把总体学习计划放到 notes 的 ai 文件夹里面。”
+
+已根据 C:/Users/24718/Desktop/MyWay/PLAN.md 整理保存为 notes/ai/learning_plan.md。保留原有考核范围、16 周加机动时间的阶段路线、第一周安排、可选教程与最终交付要求；同步实际项目路径、pip 状态、Day 6 进度及当前记录约定。每天约 60 分钟任务量，不限制实际耗时；具体问答仅在每日 records，progress 只记录进度。保留原计划文件，没有改写学习脚本或进行 Git 提交，也没有自动打开侧边文件。本次未重新核对教程网页，已在计划中说明历史来源。
+
+### 10. “PyTorch 一般可以用来干嘛，和 Transformer 有什么区别？”
+
+PyTorch 是深度学习框架，提供张量计算、搭建网络、自动求导、训练优化、GPU 计算以及模型保存和加载等工具；可用于图像分类、目标检测、文本与语音处理、数值预测等任务。Transformer 是一种基于注意力机制的神经网络结构，关注数据各部分之间的关系；它不是开发框架，也不是一个固定的训练好模型。
+
+两者不是替代关系：可以用 PyTorch 实现和训练 Transformer，也可以用 PyTorch 实现 ResNet 等其他结构。结合当前考核，PyTorch 负责搭建和训练所需工具，ResNet 是用户需要实现的网络结构，图片与标签是训练数据；Transformer 是另一种网络结构，当前计划不因此调整。
+
+已查阅 PyTorch 官方基础教程与 torch.nn.Transformer 文档。参考：https://docs.pytorch.org/tutorials/beginner/basics/intro.html 与 https://docs.pytorch.org/docs/stable/generated/torch.nn.Transformer.html 。本次为概念解释，未安装依赖或修改学习代码。
+
+### 11. “详细讲解 ResNet 和 Transformer。”
+
+这是概念解释，不标记为模型阶段已完成，也不改动原学习计划或代码。根据原始论文和 PyTorch 官方实现整理如下：
+
+**共同基础**：二者都是神经网络结构，接收数值张量并输出特征或预测分数。结构规定计算方式，训练学习其中的参数。训练过程包括预测、计算损失、反向传播、优化器更新参数；PyTorch 提供实现工具。
+
+**ResNet 与卷积**：经典 ResNet 使用卷积提取图像特征。彩色图像通常按 [批量, 通道, 高, 宽] 排列；卷积用共享的可学习小窗口在空间上计算特征，层叠后感受范围逐渐扩大。边缘、纹理、部件等是帮助理解层次特征的例子，不保证每个通道都对应人能命名的概念。
+
+**残差连接**：忽略激活函数时，残差块写作 y = x + F(x)。x 是块输入，F(x) 是主支路学到的变化，直接传来的 x 是捷径支路。目标映射 H(x) 对应 F(x) = H(x) - x；与预测误差、训练损失区分。数字例子 x=10、F(x)=3、y=13 仅说明加法；F=0 时加法部分传递 x，不把它误解为所有包含 ReLU 的完整块总是恒等映射。
+
+**为什么有用**：深层网络更难优化，残差参数化让额外层可以学习对已有特征的修正，捷径提供更直接的信号与梯度传播路径。不是“层越多必定越好”，也不是“彻底解决所有梯度问题”。原论文的退化问题涉及训练误差上升，不仅是过拟合。
+
+**经典 BasicBlock**：主支路 Conv → BatchNorm → ReLU → Conv → BatchNorm；与捷径相加后 ReLU。相加的特征形状应一致；例如 [1,64,56,56] 变成 [1,128,28,28] 时，用 1×1、步长 2 的投影支路对齐通道和空间尺寸。完整分类网络组合多个块，最后池化、线性分类器输出每类分数。经典 ResNet18 使用 8 个双卷积残差块，按通常口径计主干卷积与分类线性层，共 18 层。
+
+**Transformer 与输入表示**：文字先切成 token，token 不一定等于完整单词或汉字，再映射为向量。示例中的词切分用于说明，不代表真实 tokenizer 的输出。自注意力本身没有内置位置编号，需要位置信息表达顺序。
+
+**注意力**：处理某个位置时，给允许访问的其他位置计算匹配分数，用 softmax 转成总和为 1 的权重，再对信息向量加权求和。句子“小明把书递给小红，她说谢谢”中“她”利用上下文帮助获得表示；演示中的关系、分数与向量均为人为设置，不是某个训练模型的实际结果，也不把注意力权重当成可靠解释证明。
+
+**Q、K、V**：由输入经不同的可学习线性变换得到，Q 用于发起匹配，K 用于被匹配，V 是被加权汇总的信息。自注意力中三者来自同一个序列；交叉注意力来自不同序列。缩放点积注意力为 softmax(QKᵀ/√d_k)V，矩阵相乘用于并行处理多个位置，softmax 按每个查询对应的一行归一化。例如单头 Q、K 为 [4,8] 时，权重矩阵为 [4,4]；V 为 [4,8] 时输出为 [4,8]。
+
+**多头和层结构**：多头采用多组不同投影并行计算注意力，再拼接并投影；不同头不由人硬性指定语法或指代任务。Transformer 层还包含逐位置共享的前馈网络、归一化及残差连接。原版常见表达为 u=LayerNorm(x+Attention(x))，y=LayerNorm(u+FFN(u))；其他实现可能先归一化。注意力主要混合不同位置的信息，FFN 对每个位置的特征进行非线性处理。
+
+**编码器与解码器**：原版 Transformer 翻译模型包含读取输入的编码器和生成输出的解码器。编码器自注意力可使用全序列上下文；生成任务的因果掩码阻止当前位置访问未来内容。解码器还可通过交叉注意力读取编码器输出。也有只采用编码器或只采用解码器的结构。训练可并行计算多个受掩码约束的位置，不等于自回归生成能无依赖地同时生成所有 token。
+
+**图像 Transformer**：ViT 将图片切成小块、映射为向量并加入位置信息，用 Transformer 处理后进行分类；224×224 图片按 16×16 切块得到 196 个小块。Transformer 可处理图片，ResNet 的深层也可整合大范围信息，不能归纳成“ResNet 只能局部、Transformer 只能文字”。标准全自注意力有序列长度平方级的配对关系；实际效果与成本取决于结构、数据、训练和实现。
+
+**与当前项目的关系**：考核要求使用 PyTorch 手写残差块并组装 ResNet 做图像分类。Transformer 是另一个结构方向，当前概念介绍不改变该要求。两者都不是未训练就自然会识别的程序。
+
+增加了残差修正量和注意力匹配分数的交互数字演示，文件位于 C:/Users/24718/.codex/visualizations/2026/10/11/01a12a4d-925c-7290-9633-6a0d4268a951/residual-attention.html。已验证默认值、滑动交互、权重归一化及状态恢复；未声称这些是训练实验。
+
+参考：
+- ResNet 原论文：https://arxiv.org/abs/1512.03385
+- Transformer 原论文：https://arxiv.org/abs/1706.03762
+- ViT 原论文：https://arxiv.org/abs/2010.11929
+- torchvision ResNet 实现：https://docs.pytorch.org/vision/stable/_modules/torchvision/models/resnet.html
+- PyTorch Transformer 层：https://docs.pytorch.org/docs/stable/generated/torch.nn.TransformerEncoderLayer.html
+- PyTorch 卷积：https://docs.pytorch.org/docs/stable/generated/torch.nn.modules.conv.Conv2d.html
+- PyTorch 训练教程：https://docs.pytorch.org/tutorials/beginner/basics/optimization_tutorial.html
+
 ## 记录约定
 
 - 具体问题与解释仅放本日记录，不写入 progress_record.md。
