@@ -32,13 +32,6 @@ def print_summary(counts):
     print(f"总文件数: {sum(counts.values())}")   
     return
 def save_csv(counts, p):
-    if not p.exists():
-        p=Path(input("该路径不存在，请重新输入"))
-        return save_csv(counts,p)
-
-    elif not p.is_dir():
-        p=Path(input("请输入文件夹路径"))
-        return save_csv(counts,p)
     # if not folder.exists():
     #     fold.mkdir(parents=True)
     # Path(str(p) + "/output").mkdir(parents=True,exist_ok=True) exist_ok直接替代if
@@ -51,7 +44,8 @@ def save_csv(counts, p):
         for suffix ,count in counts.items():
             writer.writerow([suffix,count])
     print("文件已输出至"+f"{p.resolve()}/output/suffixes.csv")
-if __name__ == "__main__":
+def ask_dir():
+    global p
     if len(sys.argv)<2:
         p=Path(input("请输入路径："))
         print(p.resolve())
@@ -59,11 +53,21 @@ if __name__ == "__main__":
         #print ("当前目录下的文件和文件夹：",sonfiles)
     else:
         p=Path(sys.argv[1])
+        sys.argv=[]
+           
+    if not p.exists():
+        print("该路径不存在，请重新输入")
+        return ask_dir()
+    elif not p.is_dir():
+        print("请输入文件夹路径")
+        return ask_dir()
+if __name__ == "__main__":
     excluded={".venv", ".git", "__pycache__"}#排除的文件夹
     #sonfiles=[f.name for f in p.rglob("*") if f.name!=".venv"]
     #.name是为了字符串 不然就是WindowsPath('.venv')，rglob包括子文件夹。glob是只有这一层的
     ##注意 name只会保留最后一块内容作为字符串比如说Path(a/b/c)，使用了name会变成c
     # 这个只会去掉venv文件夹，不会去掉文件夹的内容
     # print(count_files(p, {".venv", ".git", "__pycache__"}))
+    ask_dir()
     print_summary(count_files(p, excluded))
     save_csv(count_files(p,excluded),p)
