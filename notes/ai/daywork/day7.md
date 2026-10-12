@@ -73,5 +73,5 @@ save_csv(counts, p)
 每日学习及具体问答：notes/ai/records/day7-record.md。
 总体进度：notes/ai/progress_record.md，仅记录目标、实践、完成情况与验证结果。
 
-当前状态：Day 7 已布置，尚未收到用户今日修改或复盘回答，未标记完成。
+收尾状态（2026-10-12）：统计复用、排除 output 后重复运行及理解复盘均通过；用户完成 week 1.md 周总结。完整操作说明按用户要求后续补充，不阻塞进入 Day 8。详细结果已统一写入 records/day7-record.md。
 
