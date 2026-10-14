@@ -2,6 +2,10 @@ from pathlib import Path
 
 class Folderscanner:
     def __init__(self,p,excluded,included):#默认第一个参数代表对象自己
+        if not p.exists():
+            raise OSError(f"路径不存在：{p.resolve()}")
+        if not p.is_dir():
+            raise OSError(f"路径不是文件夹：{p.resolve()}")
         self.p=p
         self.excluded=excluded
         self.included=included
@@ -31,11 +35,16 @@ class Imagesacnner(Folderscanner):
                 continue
             photosuffixes.append(inew)
         return photosuffixes
-p = Path(".")
-excluded={".venv", ".git", "__pycache__", "output"}
-included={".jpg", ".png", ".jpeg", ".webp"}
-
-scanner=Folderscanner(p,excluded,included)
-scanner_photo=Imagesacnner(p,excluded,included)
-print(scanner.count())
-print(scanner_photo.count())
+if __name__=="__main__":
+    p = Path(input("请输入路径"))
+    excluded={".venv", ".git", "__pycache__", "output"}
+    included={".jpg", ".png", ".jpeg", ".webp"}
+while True:
+    try:
+        scanner=Folderscanner(p,excluded,included)
+        scanner_photo=Imagesacnner(p,excluded,included)
+        print("各文件数目",scanner.count())
+        print("图片数目",scanner_photo.count())
+        break
+    except OSError as Error:
+        p = Path(input(str(Error)+"\n"+"请重新输入"))
