@@ -10,6 +10,7 @@ __pycache__/
 
 # 数据集与训练产物（体积大，不进 Git）
 data/
+/sample_images/
 outputs/
 *.pth
 *.pt
