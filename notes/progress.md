@@ -17,3 +17,5 @@ day10 继承 重写 super调用,重新在类里定义函数就是重写，super(
 day11 关于错误回弹，raise try except
 10.15 Day12
 day12 并没有学什么新语法，只是完成任务
+10.16 Day13
+day13 新建文件export_samples.py专门输出csv统计文件的，之后学习了csv的DictReader,读csv文件的

@@ -28,7 +28,8 @@ def count_files(path,excluded):
 #打印而已    
 def print_summary(counts):
     print("文件后缀统计结果：")
-    for suffix, count in counts.items():#这两个参数按顺序排的，叫什么名字无所谓，for a，b in c.items()也可以
+    for suffix, count in counts.items():
+    #字典用双个的，items() 这两个参数按顺序排的，叫什么名字无所谓，for a，b in c.items()也可以
         print(f"{suffix}: {count}")
     print(f"总文件数: {sum(counts.values())}")   
     return
