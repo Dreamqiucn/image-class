@@ -19,3 +19,4 @@ day11 关于错误回弹，raise try except
 day12 并没有学什么新语法，只是完成任务
 10.16 Day13
 day13 新建文件export_samples.py专门输出csv统计文件的，之后学习了csv的DictReader,读csv文件的
+day14 只是第二周的善后工作罢了，
