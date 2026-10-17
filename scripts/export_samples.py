@@ -2,19 +2,26 @@ from pathlib import Path
 import csv
 from file_scanner import Imagesacnner
 from datetime import datetime
-def save_samples(samples,p):
+import argparse
+
+def save_samples(samples,p,output):
     (p / "output").mkdir(parents=True,exist_ok=True)
     timenow= datetime.now().strftime("_%Y-%m-%d_%H-%M-%S")
     # with open(f"{p}/output/samples_{timenow}.csv","w",encoding="utf-8-sig",newline="") as file:
-    with open(f"{p}/output/samples.csv","w",encoding="utf-8-sig",newline="") as file:
+    if output==None:
+        (p / "output").mkdir(parents=True,exist_ok=True)
+        output=(p.resolve()/"output/samples.csv")
+        # print(output)
+    output.parent.mkdir(parents=True,exist_ok=True)
+    with open(output,"w",encoding="utf-8-sig",newline="") as file:
         writer=csv.writer(file)
         writer.writerow(["path","label"])
         for path,label in samples:
             writer.writerow([path,label])
         # print("输出成功："+str(p.resolve())+"\output\samples_"+timenow+".csv")
-        print("输出成功："+str(p.resolve() / "output/samples.csv")+"\n")
-def read_samples(p):
-    csv_path=(p/"output/samples.csv")
+        print("输出成功："+str(output)+"\n")
+    return output
+def read_samples(csv_path):
     with open(csv_path,"r",encoding="utf-8-sig",newline="") as file:
         read=csv.DictReader(file)
         rows=list(read)
@@ -31,11 +38,17 @@ def read_samples(p):
         print("读回图片数目：",len(rows))#len列表的东西的数目
         print("类别统计：",counts)
 if __name__ =="__main__":
-    p = Path(input("请输入路径"))
+    # p = Path(input("请输入路径"))
+    parser=argparse.ArgumentParser(description="导出图片路径与类别")
+    parser.add_argument("root",type=Path,help="图片数据根目录")
+    parser.add_argument("--output",type=Path,help="输出csv文件路径")
+    args=parser.parse_args()
+    p = args.root
+    output=args.output
     excluded={".venv", ".git", "__pycache__", "output"}
     included={".jpg", ".png", ".jpeg", ".webp"}
     scanner=Imagesacnner(p,excluded,included)
     samples=scanner.collect_samples()[1]
     # print(samples)
-    save_samples(samples,p)
-    read_samples(p)
+    csv_path=save_samples(samples,p,output)
+    read_samples(csv_path)
