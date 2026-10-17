@@ -1,0 +1,4 @@
+{
+  "excluded": [".venv", ".git", "__pycache__", "output"],
+  "included": [".jpg", ".png", ".jpeg", ".webp"]
+}
