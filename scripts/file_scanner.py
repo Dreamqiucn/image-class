@@ -41,7 +41,7 @@ class Imagesacnner(Folderscanner):
         for i in self.p.iterdir():#先扫第一层 和glob("*")效果一样
             if not i.is_dir() or i.name in self.excluded:
                 continue  
-            dirs.append(str(i.resolve()))#把文件夹的路径加到列表里面
+            dirs.append(i.resolve().as_posix())#把文件夹的路径加到列表里面
             # scanner_i=Imagesacnner(i,excluded,included)
             for ii in i.rglob("*"):#再分别扫文每个件夹的图片
                 # print(str(i.resolve()),scanner_i.count())
@@ -53,7 +53,7 @@ class Imagesacnner(Folderscanner):
 
                 if ii.suffix.lower() not in self.included:
                     continue
-                photos.append((str(ii.resolve()),i.name))
+                photos.append((ii.resolve().as_posix(),i.name))
         return dirs,photos
     def count_categories(self):
         sample=self.collect_samples()[1]#调用类里面自己的函数，使用self就可以
