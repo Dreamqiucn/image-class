@@ -58,11 +58,35 @@ def answer_10():
     b=a.reshape(4,3)
     c=a.reshape(3,4).T
     print(a,b,c)
-#创建 (2, 3, 4) 数组，用 transpose(2, 0, 1) 调整轴顺序，检查形状，并核对一个元素换位置后值是否相同。
+#11.创建 (2, 3, 4) 数组，用 transpose(2, 0, 1) 调整轴顺序，检查形状，并核对一个元素换位置后值是否相同。
 def answer_11():
     a=np.arange(1,25).reshape(2,3,4)
     b=a.transpose(2,0,1)#换之后的轴顺序是 列 表 行
     print(b)
     print(a[1, 1, 2] == b[2, 1, 1])
-
-answer_4()
+#12.自选两个形状相同的小数组，计算 a + 10、a * 2、a + b、a * b。
+def answer_12():
+    a=np.arange(1,13).reshape(3,4)
+    b=np.arange(2,6)
+    print(a)
+    print(b)    
+    print(a*b)#数值的计算，线性运算
+    print(a*2)
+#13.创建整数数组，用 astype(np.float32) 转换，打印前后的数据和 dtype。
+def answer_13():
+    a=np.arange(1,13).reshape(3,4)
+    b=a.astype(np.float32)
+    print(a,a.dtype,b,b.dtype)
+#14.创建一个 2 行 3 列的 uint8 模拟像素数组，包含 0、255 和中间值；转为 float32 后除以 255.0，打印前后的数据、dtype 和 shape。
+def answer_14():
+    a=np.arange(1,7).reshape(2,3)
+    a=a.astype(np.uint8)
+    b=a.astype(np.float32)/255.0
+    print(a,a.dtype,a.shape)
+    print(b,b.dtype,b.shape)
+#15.比较 [250] 的 uint8 数组直接加 10，与先转为 float32 再加 10 的结果。
+def answer_15():
+    a=np.array([250],dtype=np.float32)
+    b=a.astype(np.uint8)#uint数据类型的数值上限是255，过了就会从0开始算
+    print(a+10,b+10)
+answer_15()

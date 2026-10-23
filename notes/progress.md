@@ -33,5 +33,6 @@ day21 依旧总结
 10.22 Day22+23
 day22 学习Numpy，嗯，刚刚开始没强度
 day23 学习切区域，筛选
-10.23 Day24
+10.23 Day24+25
 day24 学了转换reshape，transpose换行列表轴的序列 .T把顺序正着的顺序完全换过来
+day25 学习线性运算，uint8类型，astype转化数组类型
