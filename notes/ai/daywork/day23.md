@@ -87,3 +87,9 @@ print(a[(a > 4) & (a < 9)]) # [5 6 7 8]
 本文件只保存当日任务，尚未标记完成。问答与成果记录等本日结束后统一更新到 records/day23-record.md；总进度不收录具体问题。不进行 Git 暂存、提交或推送。
 
 参考：[NumPy 官方索引文档](https://numpy.org/doc/stable/user/basics.indexing.html)、[NumPy 官方入门](https://numpy.org/doc/stable/user/absolute_beginners.html)。
+
+## 收尾状态：2026-10-22
+
+本日五项练习均已完成。用户在 scripts/numpy_basics.py 中自行编写 answer_3 至 answer_7；实际使用现有 Conda Python 执行，单元素、最后一行、第三列、右下角区域、两种布尔筛选及两种行选取的 shape 均正确，退出码 0。
+
+未代改核心代码或环境，未追加口头考试。过程统一保存到 records/day23-record.md；下一学习日 Day 24 学习 reshape、转置与轴顺序，等待用户要求开始。不进行 Git 暂存、提交或推送。
