@@ -36,3 +36,5 @@ day23 学习切区域，筛选
 10.23 Day24+25
 day24 学了转换reshape，transpose换行列表轴的序列 .T把顺序正着的顺序完全换过来
 day25 学习线性运算，uint8类型，astype转化数组类型
+10.24 Day26
+day26 简单的append，shape=len，线性运算，keepdims=True是每个用列表来存东西

@@ -89,4 +89,22 @@ def answer_15():
     a=np.array([250],dtype=np.float32)
     b=a.astype(np.uint8)#uint数据类型的数值上限是255，过了就会从0开始算
     print(a+10,b+10)
-answer_15()
+def answer_day26():
+    a = np.arange(1, 13).reshape(3, 4)
+    b = np.arange(1,5)
+    c = np.arange(1,4).reshape(3,1)
+    print((a+b)*c)
+    print(a.sum(),a.mean(),a.min(),a.max())
+    print(a.sum(axis=0),a.sum(axis=1))
+    print(a.mean(axis=0),a.mean(axis=1),a.min(axis=1),a.max(axis=0))
+    row_mean=a.mean(axis=1,keepdims=True)
+    print(row_mean)
+    d=a-row_mean
+    print(d)
+    # d=[]
+    # for i in a:
+    #     x=i.mean()
+    #     d=np.append(d,x)
+    # d=d.reshape(a.shape[0],1)
+    # print(d)
+answer_day26()
