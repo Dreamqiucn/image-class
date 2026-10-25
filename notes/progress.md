@@ -37,4 +37,6 @@ day23 学习切区域，筛选
 day24 学了转换reshape，transpose换行列表轴的序列 .T把顺序正着的顺序完全换过来
 day25 学习线性运算，uint8类型，astype转化数组类型
 10.24 Day26
-day26 简单的append，shape=len，线性运算，keepdims=True是每个用列表来存东西
+day26 简单的append，shape[0]=len（a），线性运算，keepdims=True是每个用列表来存东西
+10.25 Day27
+day27 今天算是深刻复习了一遍numpy，之前学的浅，好多没理解到位，这东西挺抽象的，建了个个knowledge文件夹用于整理知识点
