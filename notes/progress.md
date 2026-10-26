@@ -40,3 +40,5 @@ day25 学习线性运算，uint8类型，astype转化数组类型
 day26 简单的append，shape[0]=len（a），线性运算，keepdims=True是每个用列表来存东西
 10.25 Day27
 day27 今天算是深刻复习了一遍numpy，之前学的浅，好多没理解到位，这东西挺抽象的，建了个个knowledge文件夹用于整理知识点
+10.26 Day28
+day28 收工Numpy！
