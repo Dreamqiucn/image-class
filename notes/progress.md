@@ -42,3 +42,5 @@ day26 简单的append，shape[0]=len（a），线性运算，keepdims=True是每
 day27 今天算是深刻复习了一遍numpy，之前学的浅，好多没理解到位，这东西挺抽象的，建了个个knowledge文件夹用于整理知识点
 10.26 Day28
 day28 收工Numpy！
+10.27 Day29+30
+day29 学习pandas，一维series，二维dataframe
