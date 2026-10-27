@@ -44,3 +44,4 @@ day27 今天算是深刻复习了一遍numpy，之前学的浅，好多没理解
 day28 收工Numpy！
 10.27 Day29+30
 day29 学习pandas，一维series，二维dataframe
+day30 iloc和loc，读取csv

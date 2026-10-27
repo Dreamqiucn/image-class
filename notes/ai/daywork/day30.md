@@ -96,3 +96,11 @@ index 是行标签，columns 是列名，不会因为改 index 就修改图片�
 本文件只保存当天任务，尚未完成。每日问答和成果在本日结束后统一保存到 records/day30-record.md，再更新总进度；总进度不收录具体问答。不代写核心练习，不进行 Git 暂存、提交或推送，不提前创建 Day 31 任务。
 
 参考：[Pandas 读取表格](https://pandas.pydata.org/docs/getting_started/intro_tutorials/02_read_write.html)、[选择子集](https://pandas.pydata.org/docs/getting_started/intro_tutorials/03_subset_data.html)、[索引规则](https://pandas.pydata.org/docs/user_guide/indexing.html)。
+
+## 收尾状态：2026-10-27
+
+核心完成。用户新增 day30 函数，完成 CSV 读取、单列与多列表格选择、iloc 行选取，以及自定义索引 [10,20,30] 后的 loc/iloc 同行对比。实际 Conda Python 运行全部当前练习，输出正确，退出码 0。
+
+注意：收尾时实际 CSV 已改为 Path、Label 两列，样本为角色图片，最新代码按当前大小写选取；上方初始教程小写示例应以实际 df.columns 为准。用户已自行解决大小写引起的 KeyError。
+
+接受选择 Path 列、对比整行等自主等价写法，不要求补写所有切片组合。详细问答与验证统一保存于 records/day30-record.md。下一学习日 Day 31 条件筛选、缺失值与重复记录处理，等待用户要求开始；未代改核心代码、环境或进行 Git 暂存、提交、推送。
