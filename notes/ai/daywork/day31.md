@@ -80,3 +80,9 @@ print(clean)
 能运行条件筛选、缺失值检查、按必要列 dropna 和按路径检查/去重，并理解原表与清理后结果即可按核心范围收尾。当天问答与成果在用户结束本日后统一保存到 records/day31-record.md，再更新总进度；不提前标记完成。未代写核心代码、安装依赖或 Git 暂存、提交、推送；不提前创建 Day 32 任务。
 
 参考：[Pandas 条件选择](https://pandas.pydata.org/docs/getting_started/intro_tutorials/03_subset_data.html)、[isna](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.isna.html)、[dropna](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.dropna.html)、[duplicated](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.duplicated.html)、[drop_duplicates](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop_duplicates.html)。
+
+## 收尾状态：2026-10-28
+
+用户自行实现并实际运行条件筛选、缺失数量检查、必要列 dropna、按路径 drop_duplicates；当前练习正常运行。按用户决定的实际范围结束并继续 Day 32。
+
+当前 dropna 与 drop_duplicates 分别作用于原表，没有串联清理结果；前后行数、duplicated 与仅缺 Width 的样本未在当前代码执行，不记为已实践，不要求阻塞下一天。具体问答与验证保存到 records/day31-record.md。用户偏好：今后代码例子配对应输出。

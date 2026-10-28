@@ -41,4 +41,17 @@ def day31():
     print(list2.isna().sum())
     print(list2.dropna(subset=["path","label"]))
     print(list2.drop_duplicates(subset=["path"]))
-day31()
+def day32():
+    list1=[
+        {"path":"1/丰川祥子/saki.webp","label":"丰川祥子","width":1},
+        {"path":"1/丰川祥子/saki.webp","label":"丰川祥子","width":2},
+        {"path":"1/丰川祥子/saki.webp","label":"丰川祥子","width":None},
+        {"path":"1/汐见萤/shiomi.webp","label":"汐见萤","width":4},
+        {"path":"1/汐见萤/shiomi2.webp","label":"汐见萤","width":5}
+    ]
+    l=pd.DataFrame(list1)
+    print(l["path"].value_counts())
+    print(l["width"].value_counts(normalize=True))
+    print(l.groupby("label").size())
+    print(l.groupby("label")["width"].mean())
+day32()
