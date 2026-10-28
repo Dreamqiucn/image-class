@@ -45,3 +45,5 @@ day28 收工Numpy！
 10.27 Day29+30
 day29 学习pandas，一维series，二维dataframe
 day30 iloc和loc，读取csv
+10.28 Day31
+day31 学了个筛选，去重，去空的

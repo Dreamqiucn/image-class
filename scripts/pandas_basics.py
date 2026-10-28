@@ -22,4 +22,23 @@ def day30():
     dfcopy=df.copy()#复制一下
     dfcopy.index=[10,20,30]#改变索引 列的
     print(dfcopy.iloc[1],dfcopy.loc[20])#iloc是查数目找，loc是查标签索引找
-day30()
+def day31():
+    list1=[
+        {"path":"1/丰川祥子/saki.webp","label":"丰川祥子","width":"x"},
+        {"path":"1/丰川祥子/saki.webp","label":"丰川祥子","width":"x"},
+        {"path":"1/丰川祥子/saki.webp","label":None,"width":None},
+        {"path":"1/汐见萤/shiomi.webp","label":"汐见萤","width":"y"},
+        {"path":"1/汐见萤/shiomi2.webp","label":"汐见萤","width":"z"}
+    ]
+    list2=pd.DataFrame(list1)
+    print(
+        list2[
+        (list2["label"]=="丰川祥子")
+        &
+        (list2["width"]=="x")
+        ]
+        )
+    print(list2.isna().sum())
+    print(list2.dropna(subset=["path","label"]))
+    print(list2.drop_duplicates(subset=["path"]))
+day31()
