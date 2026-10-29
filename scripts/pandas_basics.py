@@ -54,4 +54,26 @@ def day32():
     print(l["width"].value_counts(normalize=True))
     print(l.groupby("label").size())
     print(l.groupby("label")["width"].mean())
-day32()
+def day33():
+    rows = [
+        {"path": "A/a.jpg", "label": "A"},
+        {"path": "B/b.jpg", "label": "B"},
+        {"path": "A/c.jpg", "label": "A"},
+        {"path": "C/d.jpg", "label": "C"},
+    ]
+    rows = pd.DataFrame(rows) 
+    new={"A":"x","C":"y"}
+    rows["n"]=rows["label"].map(new)
+    print(rows)
+    print(rows[rows["n"].isna()])
+    new["B"]="z"
+    rows["n"]=rows["label"].map(new)
+    print(rows)
+    rows2=pd.DataFrame({
+    "label": ["A", "B"],
+    "n": [0, 1],
+    "dream":[1,2]
+    })
+    rows=rows.merge(rows2,on="label",how="left")
+    print(rows)
+day33()
