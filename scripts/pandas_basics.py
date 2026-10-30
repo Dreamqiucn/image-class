@@ -1,4 +1,5 @@
 import pandas as pd
+import csv
 def day29():
     s=pd.Series([1,2,3],name="first")
     print(s,s.dtype,s.shape)
@@ -76,4 +77,27 @@ def day33():
     })
     rows=rows.merge(rows2,on="label",how="left")
     print(rows)
-day33()
+def day34():
+    rows = [
+        {"path": "A/a.jpg", "label": "A"},
+        {"path": "A/a.jpg", "label": "A"},
+        {"path": "A/b.jpg", "label": None},
+        {"path": "A/c.jpg", "label": "A"},
+        {"path": "B/d.jpg", "label": "B"},
+    ]
+    rows=pd.DataFrame(rows)
+    rows=rows.dropna(subset=["label","path"])
+    rows=rows.drop_duplicates(subset="path")
+    rows.to_csv("output/rows.csv",index=False,encoding="utf-8-sig")
+    counts=rows["label"].value_counts()
+    ratio=rows["label"].value_counts(normalize=True)
+    stats=pd.DataFrame({
+        "counts":counts,
+        "ratio":ratio
+    }).reset_index()
+    print(stats)
+    stats.to_csv("output/stats.csv",index=False,encoding="utf-8-sig")
+    with open("output/stats.csv","r",encoding="utf-8-sig",newline="")as file:
+        reader=csv.DictReader(file)
+        print(list(reader))
+day34()
