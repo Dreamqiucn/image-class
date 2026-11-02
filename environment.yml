@@ -7,3 +7,5 @@ dependencies:
   - pip
   - pillow
   - numpy
+  - pandas
+  - matplotlib

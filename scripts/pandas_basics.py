@@ -51,8 +51,8 @@ def day32():
         {"path":"1/汐见萤/shiomi2.webp","label":"汐见萤","width":5}
     ]
     l=pd.DataFrame(list1)
-    print(l["path"].value_counts())
-    print(l["width"].value_counts(normalize=True))
+    print(l["path"].value_counts())#计数
+    print(l["width"].value_counts(normalize=True))#计算占比
     print(l.groupby("label").size())
     print(l.groupby("label")["width"].mean())
 def day33():
@@ -86,8 +86,8 @@ def day34():
         {"path": "B/d.jpg", "label": "B"},
     ]
     rows=pd.DataFrame(rows)
-    rows=rows.dropna(subset=["label","path"])
-    rows=rows.drop_duplicates(subset="path")
+    rows=rows.dropna(subset=["label","path"])#去掉是nan的
+    rows=rows.drop_duplicates(subset="path")#去重
     rows.to_csv("output/rows.csv",index=False,encoding="utf-8-sig")
     counts=rows["label"].value_counts()
     ratio=rows["label"].value_counts(normalize=True)
