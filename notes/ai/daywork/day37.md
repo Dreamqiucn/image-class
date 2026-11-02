@@ -46,3 +46,7 @@ print(pixels.ravel().shape)
 3. 尝试修改 bins 的数量，观察柱子宽度和分组细节的变化。
 
 参考：[Matplotlib Axes.hist](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.hist.html)、[Pillow Image](https://pillow.readthedocs.io/en/stable/reference/Image.html)。
+
+## 完成情况
+
+用户选择进入 Day 38，按现有代码范围结束；图形窗口与观察结果未确认。详情见 [当日记录](../records/day37-record.md)。
