@@ -57,4 +57,4 @@ day35 整体复习了一遍Numpy和pandas，做了一万个问题
 11.2 Day36+37
 day36 入门matplotlib，先把这个单词背了 柱状图
 day37 直方图+获取图片亮度
-day38
+day38 显示图片+多张ax
