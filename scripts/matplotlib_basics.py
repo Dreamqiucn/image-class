@@ -11,6 +11,7 @@ def day36():
     labels=["a","b","c"]
     counts=[5,3,7]
 
+    fig,ax=plt.subplots()
     #柱状图bar
     ax.bar(labels,counts)
 
@@ -22,6 +23,8 @@ def day36():
 
 def day37():
     values = [10, 20, 30, 70, 80, 90]
+    fig,ax=plt.subplots()
+
     #直方图hist
     ax.hist(values,bins=[0,50,100],edgecolor="black")
                 #分组区域0-50 50-100 黑色边框
