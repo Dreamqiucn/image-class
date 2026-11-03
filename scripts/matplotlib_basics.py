@@ -79,4 +79,28 @@ def day39():
     fig.savefig("simulated_loss.png")
     #保存图片
     plt.show()
-day39()
+def day40():
+    matrix=np.array([
+        [3,1],
+        [2,4]
+    ])
+    fig,ax=plt.subplots()
+    image=ax.imshow(matrix,cmap="Blues")
+    fig.colorbar(image, ax=ax)
+    #颜色参考
+    labels = ["A", "B"]
+    ax.set_xticks([0, 1], labels=labels)
+    ax.set_yticks([0, 1], labels=labels)
+    #坐标0,1处是 A B
+    ax.set_xlabel("Predicted label")
+    ax.set_ylabel("True label")
+    ax.set_title("Simulated confusion matrix")
+    for row in range(2):
+        for column in range(2):
+            ax.text(
+                column,row,matrix[row,column],ha="center",va="center"
+            )
+            if row==column:
+                print("正确的是",(row,column),matrix[row,column])
+    plt.show()
+day40()

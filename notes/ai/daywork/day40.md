@@ -37,3 +37,7 @@ plt.show()
 3. 能指出正确与错误预测分别在哪些格子；无需安装新库或训练模型。
 
 参考：[混淆矩阵定义](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.confusion_matrix.html)、[Matplotlib 热力图](https://matplotlib.org/stable/gallery/images_contours_and_fields/image_annotated_heatmap.html)。
+
+## 完成情况
+
+用户完成混淆矩阵热力图代码并选择进入 Day 41；窗口运行结果未确认。详情见 [当日记录](../records/day40-record.md)。

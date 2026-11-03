@@ -60,4 +60,4 @@ day37 直方图+获取图片亮度 hist
 day38 显示图片+多张ax imshow
 11.3 Day39+40
 day39 折线图来一个 plot
-day40
+day40 学习 混淆矩阵 和热力图ax.imshow(np数组，cmap=“颜色”)
