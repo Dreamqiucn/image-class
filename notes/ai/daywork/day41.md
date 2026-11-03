@@ -39,3 +39,7 @@ print(stats)
 3. 用 Matplotlib 将类别和均值画成柱状图，设置标题及坐标轴；打印表格，简单说出结果。类别相同也可完成练习，若有两个类别更方便比较。
 
 不要求正式数据集、模型训练或额外安装；不覆盖已有输出数据。参考：[NumPy mean](https://numpy.org/doc/stable/reference/generated/numpy.mean.html)、[Pandas groupby](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.groupby.html)。
+
+## 完成情况
+
+用户完成并结束今天的练习；按当前代码范围记录，详情见 [当日记录](../records/day41-record.md)。
