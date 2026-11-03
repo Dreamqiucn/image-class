@@ -54,7 +54,10 @@ day33 映射map是映射字典的，merge是根据另外一个表的进行补充
 day34 生日快乐！计算思维电脑课做的，只是让我完成任务
 11.1 Day35
 day35 整体复习了一遍Numpy和pandas，做了一万个问题
-11.2 Day36+37
-day36 入门matplotlib，先把这个单词背了 柱状图
-day37 直方图+获取图片亮度
-day38 显示图片+多张ax
+11.2 Day36+37+38
+day36 入门matplotlib，先把这个单词背了 柱状图 bar
+day37 直方图+获取图片亮度 hist
+day38 显示图片+多张ax imshow
+11.3 Day39+40
+day39 折线图来一个 plot
+day40

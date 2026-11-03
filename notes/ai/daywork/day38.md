@@ -40,3 +40,7 @@ print(axes.shape)
 3. 理解 Figure、每个 Axes 和 imshow 的关系，观察两张图片的位置。
 
 可使用已有练习图片，不需准备正式数据集。参考：[imshow](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.imshow.html)、[subplots](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html)。
+
+## 完成情况
+
+用户完成两张图片的网格代码并选择进入 Day 39；图片显示有截图，设置中文字体后的标题效果未确认。详情见 [当日记录](../records/day38-record.md)。

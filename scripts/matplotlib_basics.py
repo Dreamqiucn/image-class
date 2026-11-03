@@ -60,4 +60,23 @@ def day38():
     axes[0].axis("off")
     axes[1].axis("off")
     plt.show()
-day38()
+def day39():
+    epochs = [1, 2, 3, 4]
+    train_loss = [1.2, 0.9, 0.7, 0.5]
+    val_loss = [1.3, 1.0, 0.9, 0.8]
+    fig, ax = plt.subplots()
+    ax.plot(epochs, train_loss, marker="o",label="train loss")
+    ax.plot(epochs, val_loss, marker="o",label="validation loss")
+    #折线图 
+    ax.set_xlabel("Epoch")
+    ax.set_ylabel("Loss")
+    ax.set_title("Simulated loss")
+    ax.legend()
+    #显示右上角的图例，什么点代表什么label
+    ax.set_xlim(left=0)
+    ax.set_ylim(bottom=0)
+    #左边下边到哪里
+    fig.savefig("simulated_loss.png")
+    #保存图片
+    plt.show()
+day39()
