@@ -58,7 +58,7 @@ day35 整体复习了一遍Numpy和pandas，做了一万个问题
 day36 入门matplotlib，先把这个单词背了 柱状图 bar
 day37 直方图+获取图片亮度 hist
 day38 显示图片+多张ax imshow
-11.3 Day39+40
+11.3 Day39+40+41
 day39 折线图来一个 plot
 day40 学习 混淆矩阵 和热力图ax.imshow(np数组，cmap=“颜色”)
 day41 完成了贯穿Numpy pandas matplotlib的小任务 
