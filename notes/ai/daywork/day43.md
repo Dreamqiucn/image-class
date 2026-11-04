@@ -35,3 +35,7 @@ print(batch[0].shape)
 3. 对取出的切片分别直接修改及使用 copy 后修改，观察是否影响批次；任选独立的小数组练习也可。
 
 参考：[stack](https://numpy.org/doc/stable/reference/generated/numpy.stack.html)、[concatenate](https://numpy.org/doc/stable/reference/generated/numpy.concatenate.html)。
+
+## 完成情况
+
+用户选择进入 Day 44，Day 43 按现有范围结束；未独立运行脚本。详情见 [当日记录](../records/day43-record.md)。

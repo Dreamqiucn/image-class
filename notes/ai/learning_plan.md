@@ -24,7 +24,7 @@
 
 建议首版采用单张图片中一个主要人物的角色分类，便于沿用手写 ResNet 图像分类路线；是否扩展跨画风评估、多人图或其他功能，之后按用户需要再确定，不记为已经承诺的范围。
 
-总体技术学习路线保持：NumPy、Pandas、Matplotlib 的数据处理分析，PyTorch 训练流程，手写残差块并组装 ResNet，实际训练与预测展示。截至 2026-11-04，Day 41 按现有范围结束，Day 42 休息日未记为已进行，用户开启 Day 43，新增巩固周为 Day 43–49，PyTorch 从 Day 50 开始，后续编号整体顺延七天；具体安排见 day22_onward_plan.md。
+总体技术学习路线保持：NumPy、Pandas、Matplotlib 的数据处理分析，PyTorch 训练流程，手写残差块并组装 ResNet，实际训练与预测展示。截至 2026-11-04，Day 42 休息日未记为已进行，Day 43 按现有范围结束，用户开启巩固周 Day 44，PyTorch 从 Day 50 开始；具体安排见 day22_onward_plan.md。
 
 ## 考核要求
 
