@@ -36,4 +36,13 @@ def day44():
     print(scores.argmax(axis=1))
     print(scores*scores1)
     print(scores1@scores)
-day44()
+def day45():
+    rng=np.random.default_rng()
+
+    print(rng.integers(0,10,size=5))#起始值，不包括的终止值，多少个
+    a=np.random.default_rng(3)#种子
+    b=np.random.default_rng(3)
+    print(a.integers(0,5,5),b.integers(0,5,5),np.equal(a.integers(0,5,5),b.integers(0,5,5)))
+    c=a.integers(0,5,5)
+    print(c,a.permutation(c))#打乱顺序
+day45()

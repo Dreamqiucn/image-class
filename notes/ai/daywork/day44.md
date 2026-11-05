@@ -41,3 +41,7 @@ print(a @ b)
 3. 对两个 2×2 数组分别计算 `*` 和 `@`，输出结果并解释其中一个位置。
 
 参考：[where](https://numpy.org/doc/stable/reference/generated/numpy.where.html)、[clip](https://numpy.org/doc/stable/reference/generated/numpy.clip.html)、[argmax](https://numpy.org/doc/stable/reference/generated/numpy.argmax.html)、[matmul](https://numpy.org/doc/stable/reference/generated/numpy.matmul.html)。
+
+## 完成情况
+
+用户选择进入 Day 45，按现有范围结束；代码已检查、未独立运行。详情见 [当日记录](../records/day44-record.md)。

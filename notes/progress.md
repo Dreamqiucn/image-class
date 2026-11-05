@@ -66,3 +66,5 @@ day42 没啥用，加了个在学pytorch之前的巩固numpy pandas matplotlib�
 11.4 Day43+44
 day43 学习numpy的concentrate和stack
 day44 学习Numpy的where查找和clip限制，以及个argmax找下标，@矩阵乘法
+11.5 Day45
+day45 学习Numpy的随机值，随机种子（不同的东西输入它就保持同一个结果）以及打乱顺序
