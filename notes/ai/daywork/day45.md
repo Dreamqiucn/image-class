@@ -35,3 +35,7 @@ print(sorted(shuffled) == sorted(samples))
 3. 对少量样本进行 permutation，打印打乱前后；若同时有路径和标签，应使用同一组索引打乱，保持配对。
 
 数据划分仅用模拟数据说明；正式数据需避免同一原图及变体跨集合造成泄漏。参考：[Generator](https://numpy.org/doc/stable/reference/random/generator.html)、[permutation](https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.permutation.html)。
+
+## 完成情况
+
+用户选择进入 Day 46，Day 45 按现有代码范围结束；未独立运行脚本。详情见 [当日记录](../records/day45-record.md)。

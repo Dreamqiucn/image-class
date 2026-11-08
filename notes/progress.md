@@ -68,3 +68,8 @@ day43 学习numpy的concentrate和stack
 day44 学习Numpy的where查找和clip限制，以及个argmax找下标，@矩阵乘法
 11.5 Day45
 day45 学习Numpy的随机值，随机种子（不同的东西输入它就保持同一个结果）以及打乱顺序
+11.8 Day46+47+48+49
+day46 学习pandas的合并表，把数字字符串变成数值，自动填充未nan的值
+day47 分组agg，列的loc条件判断
+day48 matplotlib散点图
+day49 修整
