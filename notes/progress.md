@@ -73,5 +73,6 @@ day46 学习pandas的合并表，把数字字符串变成数值，自动填充�
 day47 分组agg，列的loc条件判断
 day48 matplotlib散点图
 day49 修整
-11.9 Day50
+11.9 Day50+51
 day50 开始pytorch！
+day51 建立个tensor数组，tensor和numpy的互换

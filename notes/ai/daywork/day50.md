@@ -27,3 +27,7 @@ for device in (["cpu", "cuda"] if torch.cuda.is_available() else ["cpu"]):
 预期 CPU 结果为 14.0、梯度 [2.0, 4.0, 6.0]；若 CUDA 可用还应运行并输出相同的 CUDA 结果。设备是否真实可用以实际运算结果为准。如果 CUDA 不可用只打印 CPU，不记 GPU 已通过。
 
 今日任务：自行安装、确认 VS Code Python 环境，运行验证并理解 device 和打印结果；出错时保留报错。初次运行中 CUDA 是否可用需要观察，不自动修改依赖文件或进行 Git 操作。
+
+## 完成情况
+
+已安装 PyTorch 2.14.1+cu130；手动调用用户 day50() 验证 CPU、GPU 前向与反向均通过。详情见 [当日记录](../records/day50-record.md)。
