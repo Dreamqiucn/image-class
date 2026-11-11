@@ -31,4 +31,28 @@ def day51():
     print(y)
     print(z)
     print(y.numpy())
-day51()
+def day52():
+    x=torch.tensor([1,2,3,4,5,6])
+    y=x.to("cuda")#gpu运算
+    x+=1
+    y+=2
+    x=x.reshape((2,3))
+    x=x.unsqueeze(0)#加个轴0
+    print(x.shape)
+    x=x.squeeze(0)
+    print(x.shape)
+    print(y.cpu(),y.cpu().device)
+def day53():
+    x=torch.tensor([2.0],requires_grad=True)
+    y=x**x
+    y.backward()#反向求导赋值到x.grad
+    print(x.grad)
+
+    y=x**x
+    y.backward()
+    print(x.grad)#再导一次会叠加
+    x.grad.zero_()#清除求导的内容
+    y=x**x
+    y.backward()
+    print(x.grad)    
+day53()

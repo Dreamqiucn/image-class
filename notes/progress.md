@@ -76,3 +76,6 @@ day49 修整
 11.9 Day50+51
 day50 开始pytorch！
 day51 建立个tensor数组，tensor和numpy的互换
+11.11 Day52+53
+day52 tensor的运算，cpu，gpu转换，unsqueeze加减轴
+day53 求导
