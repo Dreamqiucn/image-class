@@ -40,3 +40,7 @@ print(x.grad)
 3. 解释 requires_grad、backward 与 x.grad 的关系；不要求今天自行实现优化器。
 
 参考：[PyTorch 自动求导](https://docs.pytorch.org/tutorials/beginner/basics/autogradqs_tutorial.html)。
+
+## 完成情况
+
+用户实现 x**x 的求导、梯度累积及清零；已实际运行验证，详情见 [当日记录](../records/day53-record.md)。

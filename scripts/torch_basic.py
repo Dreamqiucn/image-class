@@ -1,5 +1,6 @@
 import torch
 import numpy as np
+from torch import nn
 def day50():
     print("pytorch版本：",torch.__version__)
     print("pytorch的cuda版本",torch.version.cuda)
@@ -55,4 +56,41 @@ def day53():
     y=x**x
     y.backward()
     print(x.grad)    
-day53()
+def day54():
+    class samplenet(nn.Module):
+        def __init__(self):
+            super().__init__()
+            self.fc1=nn.Linear(3,4)
+            self.relu=nn.ReLU()
+            self.fc2=nn.Linear(4,2)
+        def forward(self,x):
+            x=self.fc1(x)
+            x=self.relu(x)
+            x=self.fc2(x)
+            return x
+    x=torch.tensor([2.0,3.0,4.0])
+    y=torch.tensor([1.0,2.0,5.0])
+    model=samplenet()
+    z=model(x)#会自动执行forward的
+    w=model(y)
+    print(z.shape,w.shape)
+    print(z,w)
+    print(model.fc1.weight.shape)
+    print(model.fc1.bias.shape)
+def day55():
+    logits=torch.tensor([[2.0,0.0],[1.0,3.0]])
+    # targets=logits.argmax(dim=1) 算出最大的数
+    targets = torch.tensor([0, 1])
+    targets.to(dtype=torch.long)#转换模式
+    print(targets.dtype)
+    loss_fn = nn.CrossEntropyLoss()  # 创建损失函数
+    loss = loss_fn(logits, targets)  # 传入分数和正确标签，计算损失
+    print(loss)
+    logits[0][1]=9.4
+    loss = loss_fn(logits, targets) 
+    print(loss)
+    logits.requires_grad_(True)
+    loss = loss_fn(logits, targets)  # 为了backward
+    loss.backward() 
+    print(logits.grad)
+day55()

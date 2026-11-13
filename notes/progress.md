@@ -79,3 +79,7 @@ day51 建立个tensor数组，tensor和numpy的互换
 11.11 Day52+53
 day52 tensor的运算，cpu，gpu转换，unsqueeze加减轴
 day53 求导
+11.12 Day54
+day54 构建个小网络
+11.13 Day55
+day55 计算损失值，分数，目标数这一种
