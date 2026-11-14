@@ -1,0 +1,2 @@
+这一周是补充Numpy pandas matplotlib没学的东西
+比如说Numpy合并表，pandas类别求和，matplotlib散点图

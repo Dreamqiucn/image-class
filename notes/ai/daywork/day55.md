@@ -26,3 +26,7 @@ print(logits.grad)
 3. 对 requires_grad=True 的模拟 logits 反向求导并查看梯度，理解 backward 不更新参数。无需训练模型。
 
 参考：[CrossEntropyLoss](https://docs.pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html)、[PyTorch 优化教程](https://docs.pytorch.org/tutorials/beginner/basics/optimization_tutorial.html)。
+
+## 完成情况
+
+已实际运行验证损失变化和反向求导。用户进入 Day 56，详情见 [当日记录](../records/day55-record.md)。
