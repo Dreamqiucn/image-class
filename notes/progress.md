@@ -83,6 +83,8 @@ day53 求导
 day54 构建个小网络
 11.13 Day55
 day55 计算损失值，分数，目标数这一种
-11.14 Day56
+11.14 Day56+57
 day56 重新捋一遍pytorch这周学的东西
-day57 完成个农场自建dataset
+day57 完成个农村自建dataset
+11.15 Day58
+day58 在day57基础上修改，学习dataloader分组
