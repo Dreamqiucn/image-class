@@ -88,3 +88,5 @@ day56 重新捋一遍pytorch这周学的东西
 day57 完成个农村自建dataset
 11.15 Day58
 day58 在day57基础上修改，学习dataloader分组
+11.16 Day59
+day59 训练集分流，反转图片，像素换到0-1

@@ -10,3 +10,7 @@
 核对形状时，从左到右依次是批次中的图片数、通道数、高和宽。缩放到 64×64 是本次练习的选择。Day 59 再学习图像预处理与数据划分。
 
 参考 [PyTorch DataLoader 教程](https://docs.pytorch.org/tutorials/beginner/basics/data_tutorial.html#preparing-your-data-for-training-with-dataloaders)。
+
+## 完成情况
+
+实际运行通过，两批分别有两张和一张图。详见 [Day 58 记录](../records/day58-record.md)。
