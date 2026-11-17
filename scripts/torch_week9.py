@@ -4,6 +4,8 @@ from PIL import Image
 from torch.utils.data import DataLoader
 from torchvision.transforms import RandomHorizontalFlip
 import numpy as np
+from torch import nn
+
 def day57_58_59():
     photo_list=list([("1/丰川祥子/saki.webp",0),("1/汐见萤/shiomi.webp",1),("1/汐见萤/shiomi2.webp",1)])
     class photos(torch.utils.data.Dataset):
@@ -41,5 +43,49 @@ def day57_58_59():
     for images,labels in loader:
         print(images.shape,labels.tolist())
         #tensor([2, 3, 64, 64]) [0, 1] 先是这一组有2个，再3通道，高，宽。后面是labels都有什么
-day57_58_59()
+def day60():
+    class photos(torch.utils.data.Dataset):
+        def __init__(self,sample,tran=1):
+            super().__init__()
+            self.sample=sample
+            self.tran=tran
+        def __len__(self):
+            return len(self.sample)
+        def __getitem__(self,num):
+            path,label=self.sample[num]
+            with Image.open(path) as image:
+                rgb=image.convert("RGB")#不会转换image本身，应该是新建个变量来存的
+                rgb=rgb.resize((64,64))
+                flip=RandomHorizontalFlip(p=self.tran)
+                rgb=flip(rgb)
+                pixels=torch.from_numpy(np.array(rgb)).permute(2,0,1)#调整轴的顺序，显示通道，再是高，宽
+                pixels=pixels/255.0
+                return pixels,label
+    photo_list=[("1/丰川祥子/saki.webp",0),("1/汐见萤/shiomi.webp",1),("1/汐见萤/shiomi2.webp",1)]
+    train_loader=DataLoader(photos(photo_list[:2]),batch_size=2,shuffle=True)
+    val_loader=DataLoader(photos(photo_list[2:]),batch_size=2,shuffle=False)
+    #DataLoader会自动使用sample[x]，导致__getitem__被偷偷执行了
+
+    model = nn.Sequential(
+        nn.Flatten(),
+        nn.Linear(12288,32),
+        nn.ReLU(),
+        nn.Linear(32,2)
+    )
+
+    loss_fn=nn.CrossEntropyLoss()
+    optimizer=torch.optim.SGD(model.parameters(),lr=0.01)
+    for epoch in range(1000):
+        running=0.0
+        total=0
+        for image,label in train_loader:
+            logits=model(image)
+            loss=loss_fn(logits,label)
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+            running+=loss.item()*label.size(0)
+            total+=label.size(0)
+            print(epoch,loss,running/total)
+day60()
             

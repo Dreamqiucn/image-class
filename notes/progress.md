@@ -90,3 +90,5 @@ day57 完成个农村自建dataset
 day58 在day57基础上修改，学习dataloader分组
 11.16 Day59
 day59 训练集分流，反转图片，像素换到0-1
+11.17 Day60
+day60 真正测试训练，loss越来越小，20次训练

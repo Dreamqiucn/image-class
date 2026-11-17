@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
-# 设置中文字体为微软雅黑
-plt.rcParams["font.sans-serif"] = ["Microsoft YaHei"]
+# 中文字体按顺序回退：Mac 用冬青黑体，Windows 用微软雅黑
+plt.rcParams["font.sans-serif"] = ["Hiragino Sans GB", "Microsoft YaHei", "SimHei", "Songti SC"]
 
 # 让坐标轴上的负号正常显示
 plt.rcParams["axes.unicode_minus"] = False

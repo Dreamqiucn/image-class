@@ -2,8 +2,8 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from PIL import Image
-# 设置中文字体为微软雅黑
-plt.rcParams["font.sans-serif"] = ["Microsoft YaHei"]
+# 中文字体按顺序回退：Mac 用冬青黑体，Windows 用微软雅黑
+plt.rcParams["font.sans-serif"] = ["Hiragino Sans GB", "Microsoft YaHei", "SimHei", "Songti SC"]
 
 paths=[("1/汐见萤/shiomi2.webp","汐见萤"),("1/汐见萤/shiomi.webp","汐见萤"),("1/丰川祥子/saki.webp","丰川祥子")]
 photos=[]
