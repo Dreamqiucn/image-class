@@ -47,4 +47,4 @@ Day 55 算过 `CrossEntropyLoss`，但传进去的是手写的固定 logits，�
 
 ## 收尾
 
-待填。
+2026-11-17 用户在 Mac 上完成。个人笔记记录训练 20 轮，训练 loss 下降。见 [Day 60 记录](../records/day60-record.md)。
