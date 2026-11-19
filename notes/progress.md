@@ -94,3 +94,6 @@ day59 训练集分流，反转图片，像素换到0-1
 day60 真正测试训练，loss越来越小，20次训练
 11.18 Day61
 day61 再次狠狠理解MLP，梳理训练流程，今天完成的任务其实只是制定一组之后光训练它，加了新的照片gpt.png和shiomi3.png,这是开始学有史以来最难的一天
+11.19 Day62+63
+day62 实现完整的训练流程，写图片处理类photos，设定model，创建dataloader，for训练，在每个for里遍历完创建的dataloader的全部内容，先获得logits，算loss，backward，再step优化
+day63 复盘week9的内容

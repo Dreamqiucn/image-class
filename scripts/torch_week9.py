@@ -149,5 +149,64 @@ def day61():
         loss=loss_fn(logits,labels)
         pred=logits.argmax(dim=1)
         print(logits,loss.item(),pred)
-day61()
+def day62():
+    class photos(torch.utils.data.Dataset):
+        def __init__(self,sample,tran=1):
+            super().__init__()
+            self.sample=sample
+            self.tran=tran
+        def __len__(self):
+            return len(self.sample)
+        def __getitem__(self,num):
+            path,label=self.sample[num]
+            with Image.open(path) as image:
+                rgb=image.convert("RGB")#不会转换image本身，应该是新建个变量来存的
+                rgb=rgb.resize((64,64))
+                flip=RandomHorizontalFlip(p=self.tran)
+                rgb=flip(rgb)
+                pixels=torch.from_numpy(np.array(rgb)).permute(2,0,1)#调整轴的顺序，显示通道，再是高，宽
+                pixels=pixels/255.0
+                return pixels,label
+    photo_list=[("1/丰川祥子/saki.webp",0),("1/汐见萤/shiomi.webp",1),("1/汐见萤/shiomi2.webp",1)]
+    new_photo_list=[("photos/汐见萤/shiomi3.png",1)]
+    train_loader=DataLoader(photos(photo_list),batch_size=2,shuffle=True)
+    val_loader=DataLoader(photos(new_photo_list),batch_size=2,shuffle=False)
+
+    #DataLoader会自动使用sample[x]，导致__getitem__被偷偷执行了
+
+    model = nn.Sequential(#MLP模型
+        nn.Flatten(),#把图片的像素铺平
+        nn.Linear(12288,32),#12288是3x64x64
+        nn.ReLU(),
+        nn.Linear(32,2)
+    )
+
+    loss_fn=nn.CrossEntropyLoss()
+    optimizer=torch.optim.SGD(model.parameters(),lr=0.01)#把model的信息都给optimizer
+    for epoch in range(20):
+        it =iter(train_loader)
+        running=0.0
+        total=0
+        correct=0
+        while True:
+            try:
+                images, labels = next(it)
+                logits=model(images)
+                loss=loss_fn(logits,labels)
+                optimizer.zero_grad()
+                loss.backward()
+                optimizer.step()
+                pred=logits.argmax(dim=1)
+                running+=loss.item()*labels.size(0)
+                total+=labels.size(0)
+                correct+=(pred == labels).sum().item()
+            except StopIteration:
+                break
+        print(epoch,"loss",loss.item(),"平均 loss",running/total,"预测图",pred,"正确数",correct,"/",len(photo_list))
+    for images,labels in val_loader:
+        logits=model(images)
+        loss=loss_fn(logits,labels)
+        pred=logits.argmax(dim=1)
+        print(logits,loss.item(),pred)
+day62()
             
