@@ -110,5 +110,61 @@ def day66():
             correct+=(pred==labels).sum().item()
             loss_ave+=loss*labels.size(0)
         print("平均loss",loss_ave.item()/len(photo_list),"正确数",correct)
+def day67():
+    class photo_process(torch.utils.data.Dataset):
+        def __init__(self,sample,tran=1) :
+            super().__init__()
+            self.sample=sample
+            self.tran=tran
+        def __len__(self):
+            return len(self.sample)
+        def __getitem__(self,num):
+            path,label=self.sample[num]
+            with Image.open(path) as image:
+                rgb=image.convert("RGB")
+                rgb=rgb.resize((64,64))
+                flip=RandomHorizontalFlip(p=self.tran)
+                rgb=flip(rgb)
+                pixels=torch.from_numpy(np.array(rgb)).permute(2,0,1)
+                pixels=pixels/255.0
+                return pixels,label
+    photo_list=[("1/丰川祥子/saki.webp",0),("1/汐见萤/shiomi.webp",1),("1/汐见萤/shiomi2.webp",1)]
+    new_photo_list=[("photos/汐见萤/shiomi3.png",1)]
+    train_loader=DataLoader(photo_process(photo_list),batch_size=2,shuffle=True)
+    val_loader=DataLoader(photo_process(new_photo_list,0),batch_size=2,shuffle=False)
+                                            #验证集不需要图片反转，不需要顺序打乱
+    layers=nn.Sequential(
+        nn.Conv2d(in_channels=3,out_channels=8,kernel_size=3,stride=1,padding=1),
+        nn.ReLU(),
+        nn.MaxPool2d(2,stride=2),
+        nn.Flatten(),
+        nn.Linear(8192,2)
+    )
+    loss_fn=nn.CrossEntropyLoss()
+    optimizer=torch.optim.SGD(layers.parameters(),lr=0.01)#把layers的信息都给optimizer
+    for epon in range(20):
+        layers.train()
+        loss_ave=0#平均loss
+        for images,labels in train_loader:
+            logits=layers(images)
+            loss=loss_fn(logits,labels)
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+            loss_ave+=loss*labels.size(0)
+        print("训练")
+        print("平均loss",loss_ave.item()/len(photo_list),"\n")
+        layers.eval()#验证模式
+        correct=0
+        loss_ave=0
 
-day66()
+        with torch.no_grad():
+            for images,labels in val_loader:
+                logits=layers(images)
+                loss=loss_fn(logits,labels)
+                pred=logits.argmax(dim=1)
+                correct+=(pred==labels).sum().item()
+                loss_ave+=loss*labels.size(0)
+            print("验证")
+            print("平均loss",loss_ave.item()/len(new_photo_list),"正确数",correct,"\n")
+day67()
