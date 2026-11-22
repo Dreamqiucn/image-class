@@ -101,6 +101,7 @@ day63 复盘week9的内容
 day64 卷积模型开始入门
 11.21 Day65
 day65 给day64多加几道加工工艺
-11.22 Day66+67
+11.22 Day66+67+68
 day66 给CNN加上训练流程
 day67 加上验证阶段
+day68 加上csv导出，matplotlib画折线图
