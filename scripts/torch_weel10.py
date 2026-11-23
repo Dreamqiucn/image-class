@@ -26,8 +26,8 @@ def day64():
                 pixels=torch.from_numpy(np.array(rgb)).permute(2,0,1)
                 pixels=pixels/255.0
                 return pixels,label
-    photo_list=[("photos/丰川祥子/saki.webp",0),("photos/汐见萤/shiomi.webp",1),("photos/汐见萤/shiomi2.webp",1)]
-    new_photo_list=[("photos/汐见萤/shiomi3.png",1)]
+    photo_list=[("data/raw/丰川祥子/saki.webp",0),("data/raw/汐见萤/shiomi.webp",1),("data/raw/汐见萤/shiomi2.webp",1)]
+    new_photo_list=[("data/raw/汐见萤/shiomi3.png",1)]
     train_loader=DataLoader(photo_process(photo_list),batch_size=2,shuffle=True)
     val_loader=DataLoader(photo_process(new_photo_list),batch_size=2,shuffle=False)
     conv=nn.Conv2d(
@@ -54,8 +54,8 @@ def day65():
                 pixels=torch.from_numpy(np.array(rgb)).permute(2,0,1)
                 pixels=pixels/255.0
                 return pixels,label
-    photo_list=[("photos/丰川祥子/saki.webp",0),("photos/汐见萤/shiomi.webp",1),("photos/汐见萤/shiomi2.webp",1)]
-    new_photo_list=[("photos/汐见萤/shiomi3.png",1)]
+    photo_list=[("data/raw/丰川祥子/saki.webp",0),("data/raw/汐见萤/shiomi.webp",1),("data/raw/汐见萤/shiomi2.webp",1)]
+    new_photo_list=[("data/raw/汐见萤/shiomi3.png",1)]
     train_loader=DataLoader(photo_process(photo_list),batch_size=2,shuffle=True)
     val_loader=DataLoader(photo_process(new_photo_list),batch_size=2,shuffle=False)
     layers=nn.Sequential(
@@ -88,8 +88,8 @@ def day66():
                 pixels=torch.from_numpy(np.array(rgb)).permute(2,0,1)
                 pixels=pixels/255.0
                 return pixels,label
-    photo_list=[("photos/丰川祥子/saki.webp",0),("photos/汐见萤/shiomi.webp",1),("photos/汐见萤/shiomi2.webp",1)]
-    new_photo_list=[("photos/汐见萤/shiomi3.png",1)]
+    photo_list=[("data/raw/丰川祥子/saki.webp",0),("data/raw/汐见萤/shiomi.webp",1),("data/raw/汐见萤/shiomi2.webp",1)]
+    new_photo_list=[("data/raw/汐见萤/shiomi3.png",1)]
     train_loader=DataLoader(photo_process(photo_list),batch_size=2,shuffle=True)
     val_loader=DataLoader(photo_process(new_photo_list),batch_size=2,shuffle=False)
     layers=nn.Sequential(
@@ -132,8 +132,8 @@ def day67():
                 pixels=torch.from_numpy(np.array(rgb)).permute(2,0,1)
                 pixels=pixels/255.0
                 return pixels,label
-    photo_list=[("photos/丰川祥子/saki.webp",0),("photos/汐见萤/shiomi.webp",1),("photos/汐见萤/shiomi2.webp",1)]
-    new_photo_list=[("photos/汐见萤/shiomi3.png",1)]
+    photo_list=[("data/raw/丰川祥子/saki.webp",0),("data/raw/汐见萤/shiomi.webp",1),("data/raw/汐见萤/shiomi2.webp",1)]
+    new_photo_list=[("data/raw/汐见萤/shiomi3.png",1)]
     train_loader=DataLoader(photo_process(photo_list),batch_size=2,shuffle=True)
     val_loader=DataLoader(photo_process(new_photo_list,0),batch_size=2,shuffle=False)
                                             #验证集不需要图片反转，不需要顺序打乱
@@ -189,8 +189,8 @@ def day68():
                 pixels=torch.from_numpy(np.array(rgb)).permute(2,0,1)
                 pixels=pixels/255.0
                 return pixels,label
-    photo_list=[("photos/丰川祥子/saki.webp",0),("photos/汐见萤/shiomi.webp",1),("photos/汐见萤/shiomi2.webp",1)]
-    new_photo_list=[("photos/汐见萤/shiomi3.png",1)]
+    photo_list=[("data/raw/丰川祥子/saki.webp",0),("data/raw/汐见萤/shiomi.webp",1),("data/raw/汐见萤/shiomi2.webp",1)]
+    new_photo_list=[("data/raw/汐见萤/shiomi3.png",1)]
     train_loader=DataLoader(photo_process(photo_list),batch_size=2,shuffle=True)
     val_loader=DataLoader(photo_process(new_photo_list,0),batch_size=2,shuffle=False)
                                             #验证集不需要图片反转，不需要顺序打乱
@@ -273,7 +273,7 @@ def day69():
                 pixels=torch.from_numpy(np.array(rgb)).permute(2,0,1)
                 pixels=pixels/255.0
                 return pixels
-    val_photo_list=["photos/汐见萤/shiomi3.png","photos/gpt/gpt.png"]
+    val_photo_list=["data/raw/汐见萤/shiomi3.png","data/raw/gpt娘/gpt.png"]
     val_class={
         0:"丰川祥子",
         1:"汐见萤",

@@ -9,7 +9,7 @@
 ## 当前项目情况
 
 - scripts/torch_weel10.py 的 day66 有训练样本、new_photo_list 和 val_loader，但尚未遍历验证集。
-- 当前验证集仅一张图片 photos/汐见萤/shiomi3.png，训练列表三张图。路径不同不代表已做过图片内容去重；本次只用于理解流程，结果不能评价泛化。
+- 当前验证集仅一张图片 data/raw/汐见萤/shiomi3.png，训练列表三张图。路径不同不代表已做过图片内容去重；本次只用于理解流程，结果不能评价泛化。
 - photo_process 默认 tran=1，会以 100% 概率水平翻转；验证 Dataset 应传入 tran=0，让验证不发生随机翻转。
 - Mac 当前 torch 2.15.0 可用。今天可使用 CPU，不要求安装依赖或使用 GPU。
 

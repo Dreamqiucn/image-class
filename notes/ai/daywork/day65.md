@@ -37,3 +37,7 @@ Linear      (2, 2)
 ```
 
 参考 [PyTorch 网络搭建教程](https://docs.pytorch.org/tutorials/beginner/basics/buildmodel_tutorial.html) 和 [MaxPool2d 文档](https://docs.pytorch.org/docs/stable/generated/torch.nn.MaxPool2d.html)。
+
+## 收尾补记
+
+Day 65 代码接到 Flatten，并逐层打印形状。Linear 分类层随后在 Day 66 的 CNN 中接入并用于训练。见 [Day 65 学习记录](../records/day65-record.md)。

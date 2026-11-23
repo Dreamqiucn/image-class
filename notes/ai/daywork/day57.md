@@ -8,7 +8,7 @@
 - `__len__(self)`：执行 `len(dataset)` 时调用，返回样本数量。
 - `__getitem__(self, idx)`：执行 `dataset[idx]` 时调用，取出第 idx 个样本的路径和标签，打开图片并返回 `(图片, 标签)`。
 
-先用两张已有图片手动建立列表。在项目根目录运行时，可用 `photos/丰川祥子/saki.webp` 和 `photos/汐见萤/shiomi.webp`，练习编号分别为 0 和 1。也可以自选另两张图片。
+先用两张已有图片手动建立列表。在项目根目录运行时，可用 `data/raw/丰川祥子/saki.webp` 和 `data/raw/汐见萤/shiomi.webp`，练习编号分别为 0 和 1。也可以自选另两张图片。
 
 ## 练习步骤
 

@@ -5,7 +5,7 @@ from PIL import Image
 # 中文字体按顺序回退：Mac 用冬青黑体，Windows 用微软雅黑
 plt.rcParams["font.sans-serif"] = ["Hiragino Sans GB", "Microsoft YaHei", "SimHei", "Songti SC"]
 
-paths=[("photos/汐见萤/shiomi2.webp","汐见萤"),("photos/汐见萤/shiomi.webp","汐见萤"),("photos/丰川祥子/saki.webp","丰川祥子")]
+paths=[("data/raw/汐见萤/shiomi2.webp","汐见萤"),("data/raw/汐见萤/shiomi.webp","汐见萤"),("data/raw/丰川祥子/saki.webp","丰川祥子")]
 photos=[]
 for path in paths:  
     with Image.open(path[0]) as image:

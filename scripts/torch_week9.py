@@ -7,7 +7,7 @@ import numpy as np
 from torch import nn
 
 def day57_58_59():
-    photo_list=list([("photos/丰川祥子/saki.webp",0),("photos/汐见萤/shiomi.webp",1),("photos/汐见萤/shiomi2.webp",1)])
+    photo_list=list([("data/raw/丰川祥子/saki.webp",0),("data/raw/汐见萤/shiomi.webp",1),("data/raw/汐见萤/shiomi2.webp",1)])
     class photos(torch.utils.data.Dataset):
         def __init__(self,sample,tran=1):
             super().__init__()
@@ -61,7 +61,7 @@ def day60():
                 pixels=torch.from_numpy(np.array(rgb)).permute(2,0,1)#调整轴的顺序，显示通道，再是高，宽
                 pixels=pixels/255.0
                 return pixels,label
-    photo_list=[("photos/丰川祥子/saki.webp",0),("photos/汐见萤/shiomi.webp",1),("photos/汐见萤/shiomi2.webp",1)]
+    photo_list=[("data/raw/丰川祥子/saki.webp",0),("data/raw/汐见萤/shiomi.webp",1),("data/raw/汐见萤/shiomi2.webp",1)]
     train_loader=DataLoader(photos(photo_list[:2]),batch_size=2,shuffle=True)
     val_loader=DataLoader(photos(photo_list[2:]),batch_size=2,shuffle=False)
     #DataLoader会自动使用sample[x]，导致__getitem__被偷偷执行了
@@ -112,7 +112,7 @@ def day61():
                 pixels=torch.from_numpy(np.array(rgb)).permute(2,0,1)#调整轴的顺序，显示通道，再是高，宽
                 pixels=pixels/255.0
                 return pixels,label
-    photo_list=[("photos/丰川祥子/saki.webp",0),("photos/汐见萤/shiomi.webp",1),("photos/汐见萤/shiomi2.webp",1)]
+    photo_list=[("data/raw/丰川祥子/saki.webp",0),("data/raw/汐见萤/shiomi.webp",1),("data/raw/汐见萤/shiomi2.webp",1)]
     train_loader=DataLoader(photos(photo_list[:2]),batch_size=2,shuffle=True)
     val_loader=DataLoader(photos(photo_list[2:]),batch_size=2,shuffle=False)
     #DataLoader会自动使用sample[x]，导致__getitem__被偷偷执行了
@@ -142,7 +142,7 @@ def day61():
         if epoch==0 or epoch==19:
             print(epoch,"loss",loss.item(),"平均 loss",running/total,"预测图",pred,"正确数",(pred == labels).sum().item(),"/",len(images))#len(train_loader)得到的是一共有几批
     #下面是写着玩的看看认不认识shiomi
-    new_photo_list=[("photos/汐见萤/shiomi3.png",1)]
+    new_photo_list=[("data/raw/汐见萤/shiomi3.png",1)]
     new=DataLoader(photos(new_photo_list),batch_size=2,shuffle=False)
     for images,labels in new:
         logits=model(images)
@@ -167,8 +167,8 @@ def day62():
                 pixels=torch.from_numpy(np.array(rgb)).permute(2,0,1)#调整轴的顺序，显示通道，再是高，宽
                 pixels=pixels/255.0
                 return pixels,label
-    photo_list=[("photos/丰川祥子/saki.webp",0),("photos/汐见萤/shiomi.webp",1),("photos/汐见萤/shiomi2.webp",1)]
-    new_photo_list=[("photos/汐见萤/shiomi3.png",1)]
+    photo_list=[("data/raw/丰川祥子/saki.webp",0),("data/raw/汐见萤/shiomi.webp",1),("data/raw/汐见萤/shiomi2.webp",1)]
+    new_photo_list=[("data/raw/汐见萤/shiomi3.png",1)]
     train_loader=DataLoader(photos(photo_list),batch_size=2,shuffle=True)
     val_loader=DataLoader(photos(new_photo_list),batch_size=2,shuffle=False)
 
