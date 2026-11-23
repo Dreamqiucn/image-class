@@ -4,9 +4,9 @@ def day29():
     s=pd.Series([1,2,3],name="first")
     print(s,s.dtype,s.shape)
     list1=[
-        {"path":"1/丰川祥子/saki.webp","label":"丰川祥子","width":"x"},
-        {"path":"1/汐见萤/shiomi.webp","label":"汐见萤","width":"y"},
-        {"path":"1/汐见萤/shiomi2.webp","label":"汐见萤","width":"z"}
+        {"path":"photos/丰川祥子/saki.webp","label":"丰川祥子","width":"x"},
+        {"path":"photos/汐见萤/shiomi.webp","label":"汐见萤","width":"y"},
+        {"path":"photos/汐见萤/shiomi2.webp","label":"汐见萤","width":"z"}
     ]
     list2=pd.DataFrame(list1)
     print(list2,list2.shape,list2.dtypes,list2.columns,list2.head(2),list2["label"])
@@ -25,11 +25,11 @@ def day30():
     print(dfcopy.iloc[1],dfcopy.loc[20])#iloc是查数目找，loc是查标签索引找
 def day31():
     list1=[
-        {"path":"1/丰川祥子/saki.webp","label":"丰川祥子","width":"x"},
-        {"path":"1/丰川祥子/saki.webp","label":"丰川祥子","width":"x"},
-        {"path":"1/丰川祥子/saki.webp","label":None,"width":None},
-        {"path":"1/汐见萤/shiomi.webp","label":"汐见萤","width":"y"},
-        {"path":"1/汐见萤/shiomi2.webp","label":"汐见萤","width":"z"}
+        {"path":"photos/丰川祥子/saki.webp","label":"丰川祥子","width":"x"},
+        {"path":"photos/丰川祥子/saki.webp","label":"丰川祥子","width":"x"},
+        {"path":"photos/丰川祥子/saki.webp","label":None,"width":None},
+        {"path":"photos/汐见萤/shiomi.webp","label":"汐见萤","width":"y"},
+        {"path":"photos/汐见萤/shiomi2.webp","label":"汐见萤","width":"z"}
     ]
     list2=pd.DataFrame(list1)
     print(
@@ -44,11 +44,11 @@ def day31():
     print(list2.drop_duplicates(subset=["path"]))
 def day32():
     list1=[
-        {"path":"1/丰川祥子/saki.webp","label":"丰川祥子","width":1},
-        {"path":"1/丰川祥子/saki.webp","label":"丰川祥子","width":2},
-        {"path":"1/丰川祥子/saki.webp","label":"丰川祥子","width":None},
-        {"path":"1/汐见萤/shiomi.webp","label":"汐见萤","width":4},
-        {"path":"1/汐见萤/shiomi2.webp","label":"汐见萤","width":5}
+        {"path":"photos/丰川祥子/saki.webp","label":"丰川祥子","width":1},
+        {"path":"photos/丰川祥子/saki.webp","label":"丰川祥子","width":2},
+        {"path":"photos/丰川祥子/saki.webp","label":"丰川祥子","width":None},
+        {"path":"photos/汐见萤/shiomi.webp","label":"汐见萤","width":4},
+        {"path":"photos/汐见萤/shiomi2.webp","label":"汐见萤","width":5}
     ]
     l=pd.DataFrame(list1)
     print(l["path"].value_counts())#计数

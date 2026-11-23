@@ -2,7 +2,6 @@
 .venv/
 venv/
 env/
-output/
 # Python 缓存
 __pycache__/
 *.py[cod]
@@ -12,6 +11,9 @@ __pycache__/
 data/
 /sample_images/
 outputs/
+1/
+output/
+
 *.pth
 *.pt
 

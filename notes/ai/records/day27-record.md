@@ -10,7 +10,7 @@
 
 用户新建 scripts/image_numpy.py，input 接收图片路径，使用 Image.open、convert("RGB") 和 np.array 读图；按轴计算三个通道均值，再 astype(np.float32)/255.0，输出类型、形状、最大值和最小值。
 
-实际使用 /Users/qiuyaojia/miniconda3/envs/image-class-conda/bin/python，以 -B 和 runpy 运行原脚本，仅由验收过程提供输入并捕获输出，未修改核心代码。图片为项目 1/汐见萤/shiomi.webp。
+实际使用 /Users/qiuyaojia/miniconda3/envs/image-class-conda/bin/python，以 -B 和 runpy 运行原脚本，仅由验收过程提供输入并捕获输出，未修改核心代码。图片为项目 photos/汐见萤/shiomi.webp。
 
 - RGB 数组 shape=(1647,1143,3)、ndim=3、dtype=uint8，与 Pillow 原图宽 1143、高 1647 一致。
 - mean(axis=(0,1)) 得到约 [139.9086135,139.34916476,139.23287018]，shape=(3,)。

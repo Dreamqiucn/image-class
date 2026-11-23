@@ -6,6 +6,8 @@ from torchvision.transforms import RandomHorizontalFlip
 import numpy as np
 import matplotlib.pyplot as plt
 import csv
+from pathlib import Path
+
 def day64():
     class photo_process(torch.utils.data.Dataset):
         def __init__(self,sample,tran=1) :
@@ -24,7 +26,7 @@ def day64():
                 pixels=torch.from_numpy(np.array(rgb)).permute(2,0,1)
                 pixels=pixels/255.0
                 return pixels,label
-    photo_list=[("1/丰川祥子/saki.webp",0),("1/汐见萤/shiomi.webp",1),("1/汐见萤/shiomi2.webp",1)]
+    photo_list=[("photos/丰川祥子/saki.webp",0),("photos/汐见萤/shiomi.webp",1),("photos/汐见萤/shiomi2.webp",1)]
     new_photo_list=[("photos/汐见萤/shiomi3.png",1)]
     train_loader=DataLoader(photo_process(photo_list),batch_size=2,shuffle=True)
     val_loader=DataLoader(photo_process(new_photo_list),batch_size=2,shuffle=False)
@@ -52,7 +54,7 @@ def day65():
                 pixels=torch.from_numpy(np.array(rgb)).permute(2,0,1)
                 pixels=pixels/255.0
                 return pixels,label
-    photo_list=[("1/丰川祥子/saki.webp",0),("1/汐见萤/shiomi.webp",1),("1/汐见萤/shiomi2.webp",1)]
+    photo_list=[("photos/丰川祥子/saki.webp",0),("photos/汐见萤/shiomi.webp",1),("photos/汐见萤/shiomi2.webp",1)]
     new_photo_list=[("photos/汐见萤/shiomi3.png",1)]
     train_loader=DataLoader(photo_process(photo_list),batch_size=2,shuffle=True)
     val_loader=DataLoader(photo_process(new_photo_list),batch_size=2,shuffle=False)
@@ -86,7 +88,7 @@ def day66():
                 pixels=torch.from_numpy(np.array(rgb)).permute(2,0,1)
                 pixels=pixels/255.0
                 return pixels,label
-    photo_list=[("1/丰川祥子/saki.webp",0),("1/汐见萤/shiomi.webp",1),("1/汐见萤/shiomi2.webp",1)]
+    photo_list=[("photos/丰川祥子/saki.webp",0),("photos/汐见萤/shiomi.webp",1),("photos/汐见萤/shiomi2.webp",1)]
     new_photo_list=[("photos/汐见萤/shiomi3.png",1)]
     train_loader=DataLoader(photo_process(photo_list),batch_size=2,shuffle=True)
     val_loader=DataLoader(photo_process(new_photo_list),batch_size=2,shuffle=False)
@@ -130,7 +132,7 @@ def day67():
                 pixels=torch.from_numpy(np.array(rgb)).permute(2,0,1)
                 pixels=pixels/255.0
                 return pixels,label
-    photo_list=[("1/丰川祥子/saki.webp",0),("1/汐见萤/shiomi.webp",1),("1/汐见萤/shiomi2.webp",1)]
+    photo_list=[("photos/丰川祥子/saki.webp",0),("photos/汐见萤/shiomi.webp",1),("photos/汐见萤/shiomi2.webp",1)]
     new_photo_list=[("photos/汐见萤/shiomi3.png",1)]
     train_loader=DataLoader(photo_process(photo_list),batch_size=2,shuffle=True)
     val_loader=DataLoader(photo_process(new_photo_list,0),batch_size=2,shuffle=False)
@@ -187,7 +189,7 @@ def day68():
                 pixels=torch.from_numpy(np.array(rgb)).permute(2,0,1)
                 pixels=pixels/255.0
                 return pixels,label
-    photo_list=[("1/丰川祥子/saki.webp",0),("1/汐见萤/shiomi.webp",1),("1/汐见萤/shiomi2.webp",1)]
+    photo_list=[("photos/丰川祥子/saki.webp",0),("photos/汐见萤/shiomi.webp",1),("photos/汐见萤/shiomi2.webp",1)]
     new_photo_list=[("photos/汐见萤/shiomi3.png",1)]
     train_loader=DataLoader(photo_process(photo_list),batch_size=2,shuffle=True)
     val_loader=DataLoader(photo_process(new_photo_list,0),batch_size=2,shuffle=False)
@@ -250,4 +252,59 @@ def day68():
     ax.set_ylabel("Loss")
     fig.savefig("output/loss_day68.png")
     plt.show()
-day68()
+    Path("output").mkdir(parents=True,exist_ok=True)
+    torch.save(layers.state_dict(),"output/day68.pth")
+    #保存权重
+def day69():
+    class photo_process(torch.utils.data.Dataset):
+        def __init__(self,sample,tran=1) :
+            super().__init__()
+            self.sample=sample
+            self.tran=tran
+        def __len__(self):
+            return len(self.sample)
+        def __getitem__(self,num):
+            path=self.sample[num]
+            with Image.open(path) as image:
+                rgb=image.convert("RGB")
+                rgb=rgb.resize((64,64))
+                flip=RandomHorizontalFlip(p=self.tran)
+                rgb=flip(rgb)
+                pixels=torch.from_numpy(np.array(rgb)).permute(2,0,1)
+                pixels=pixels/255.0
+                return pixels
+    val_photo_list=["photos/汐见萤/shiomi3.png","photos/gpt/gpt.png"]
+    val_class={
+        0:"丰川祥子",
+        1:"汐见萤",
+        2:"GPT",
+        3:"DeepSeek"
+    }
+    val_loader=DataLoader(photo_process(val_photo_list,0),batch_size=2,shuffle=False)
+                                            #验证集不需要图片反转，不需要顺序打乱
+    val_model=nn.Sequential(
+        nn.Conv2d(in_channels=3,out_channels=8,kernel_size=3,stride=1,padding=1),
+        nn.ReLU(),
+        nn.MaxPool2d(2,stride=2),
+        nn.Flatten(),
+        nn.Linear(8192,2)    
+    )
+    weights=torch.load(
+        "output/day68.pth",
+        weights_only=True,
+        map_location="cpu"
+    )
+    val_model.load_state_dict(weights)
+    val_model.eval()#验证模式
+    correct=0
+    pred_list=[]
+    with torch.no_grad():
+        for i,images in enumerate(val_loader):#为了得到i，enumerate加了之后变成(i,val_loader)
+            for ii,image in enumerate(images):
+                logits=val_model(torch.unsqueeze(image,dim=0))
+                pred=logits.argmax(dim=1)
+                print(logits)
+                pred_list.append([val_photo_list[i*val_loader.batch_size+ii],torch.squeeze(logits,dim=0).tolist(),val_class[pred.item()]])
+        print(pred_list)
+
+day69()
