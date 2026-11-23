@@ -107,3 +107,4 @@ day67 加上验证阶段
 day68 加上csv导出，matplotlib画折线图
 11.23 Day69+70
 day69 导出day68的权重pth，接入day69，专门用来预测是哪个图片的
+day70 收尾week10
