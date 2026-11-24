@@ -29,7 +29,7 @@ def day37():
     ax.hist(values,bins=[0,50,100],edgecolor="black")
                 #分组区域0-50 50-100 黑色边框
 
-    with Image.open("data/raw/汐见萤/shiomi2.webp") as image:
+    with Image.open("data/fixtures/汐见萤/shiomi2.webp") as image:
         gray=image.convert("L") #灰度图只有亮度
         pixels=np.array(gray)
 
@@ -43,11 +43,11 @@ def day37():
     plt.show()
 
 def day38():
-    with Image.open("data/raw/汐见萤/shiomi2.webp") as image:
+    with Image.open("data/fixtures/汐见萤/shiomi2.webp") as image:
         gray=image.convert("L")
         pixels=np.array(gray)
         rgb=image.convert("RGB")
-    with Image.open("data/raw/丰川祥子/saki.webp") as image:
+    with Image.open("data/fixtures/丰川祥子/saki.webp") as image:
         rgb2=image.convert("RGBA")
     # print(pixels.shape)
     # print(pixels.ravel().shape)
