@@ -11,6 +11,7 @@ __pycache__/
 /data/*
 !/data/.gitkeep
 !/data/fixtures/
+!/data/manifests/
 /sample_images/
 outputs/
 1/
