@@ -535,10 +535,14 @@ notes/ai/
 
 日期：2026-11-26。用户自行编写 `scripts/split_dataset.py`，过滤 `exclude_from_train == 0`，以固定随机种子 `42` 按 `class_id` 升序分层、对类内唯一 `group_id` 排序后随机打乱，按 `70% / 15% / 15%` 切分并导出 `data/manifests/train_csv.csv`（3,187 行）、`data/manifests/val_csv.csv`（659 行）、`data/manifests/test_csv.csv`（661 行）。独立核验总行数 4,507 守恒，`path`、`group_id`、`sha256` 跨集合零交集，29 类在三份清单中全覆盖，重复运行文件哈希完全一致。详见 [Day 75 记录](records/day75-record.md)。
 
+## Day 76：用三大库分析正式数据类别分布与图片样例（按当前范围核心完成）
+
+日期：2026-11-26。用户自行编写 `scripts/analyze_dataset.py`，串联 Pandas、NumPy、Matplotlib 与 Pillow，对 `data/manifests/samples.csv` 统计 29 类样本分布与宽高均值，绘制带 45° 倾斜中文标签的 29 类样本数量分布柱状图（`output/角色图片数目统计.png`），并使用 `df.groupby("class_id").sample(1).sample(4)` 随机抽取 4 个不同角色图片转为 NumPy 数组，绘制含总标题、子图路径标题与底部 `宽 x 高` 尺寸标签的 `(1, 4)` 样例网格图（`output/随机图片.png`）。独立查看两张输出图片均显示正常。详见 [Day 76 记录](records/day76-record.md)。
+
 ## 当前接续点
 
-正式选题为“动漫人物识别”。Day 42 休息日未记为已进行。Day 64 Conv2d 核心练习已完成，Day 65 已补记逐层观察和展平练习。Day 66 至 Day 69 按实际范围核心完成，Day 70 轻量复盘已结束。Day 71 至 Day 74 已完成 29 类正式数据集收集、清洗与同源分组（4,507 张图片，4,407 个分组），Day 75 已按 `group_id` 分层划分为固定的训练、验证与测试清单。下一项 Day 76，用 NumPy、Pandas、Matplotlib 分析正式数据的类别分布和样例并保存数据分析图表。
+正式选题为“动漫人物识别”。Day 42 休息日未记为已进行。Day 64 Conv2d 核心练习已完成，Day 65 已补记逐层观察和展平练习。Day 66 至 Day 69 按实际范围核心完成，Day 70 轻量复盘已结束。Day 71 至 Day 74 已完成 29 类正式数据集收集、清洗与同源分组（4,507 张图片，4,407 个分组），Day 75 已按 `group_id` 分层划分为固定的训练、验证与测试清单，Day 76 已完成正式数据类别分布柱状图与随机样例网格图保存。下一项 Day 77（第十周休息或可选复盘；也可直接进入第 11 周 Day 78 残差块准备）。
 
 第一周路径检查、统计复用、输出排除与跨工作目录运行已完成；用户已写 week 1.md 学习总结，完整使用说明按用户要求后续补充，不阻塞当前学习。
 
-第一周核心收尾完成；Day 8 按用户调整范围结束，Day 9 至 Day 17 按已记录范围完成，Day 18 跳过，Day 19 核心完成。Day 20 部分实现后由用户结束，未通过部分已归档，不强制补修。Day 21 聊天内轻量复盘已按用户要求结束，Day 22 NumPy 核心练习已完成，Day 23 五项新练习已完成，Day 24 至 Day 27 核心完成，Day 28 轻量复盘已结束，Day 29、Day 30 Pandas 核心练习完成，Day 31、Day 32 按用户指定的当前范围结束，Day 33、Day 34 核心练习完成，Day 35 复盘已结束，Day 36 至 Day 38 按现有范围结束，Day 39 核心完成，Day 40、Day 41 按现有范围结束，Day 43 至 Day 47 按现有范围结束，Day 48 核心完成，Day 49 休息结束，Day 50 至 Day 55 核心完成。Day 56 复盘已结束，Day 57 Dataset 核心完成。Day 58 DataLoader 已完成。Day 59 按当前范围结束，Day 60 已完成，Day 61 至 Day 62 核心完成，Day 63 轻量复盘已结束，Day 64 核心完成，Day 65 已补记逐层观察和展平练习，Day 66 核心完成，Day 67 按用户调整范围核心完成，Day 68 至 Day 69 核心完成，Day 70 轻量复盘已结束。Day 71 至 Day 75 已完成。下一项 Day 76，等待用户开始。不替写核心代码，不提交、推送。
+第一周核心收尾完成；Day 8 按用户调整范围结束，Day 9 至 Day 17 按已记录范围完成，Day 18 跳过，Day 19 核心完成。Day 20 部分实现后由用户结束，未通过部分已归档，不强制补修。Day 21 聊天内轻量复盘已按用户要求结束，Day 22 NumPy 核心练习已完成，Day 23 五项新练习已完成，Day 24 至 Day 27 核心完成，Day 28 轻量复盘已结束，Day 29、Day 30 Pandas 核心练习完成，Day 31、Day 32 按用户指定的当前范围结束，Day 33、Day 34 核心练习完成，Day 35 复盘已结束，Day 36 至 Day 38 按现有范围结束，Day 39 核心完成，Day 40、Day 41 按现有范围结束，Day 43 至 Day 47 按现有范围结束，Day 48 核心完成，Day 49 休息结束，Day 50 至 Day 55 核心完成。Day 56 复盘已结束，Day 57 Dataset 核心完成。Day 58 DataLoader 已完成。Day 59 按当前范围结束，Day 60 已完成，Day 61 至 Day 62 核心完成，Day 63 轻量复盘已结束，Day 64 核心完成，Day 65 已补记逐层观察和展平练习，Day 66 核心完成，Day 67 按用户调整范围核心完成，Day 68 至 Day 69 核心完成，Day 70 轻量复盘已结束。Day 71 至 Day 76 已完成。下一项 Day 77，等待用户开始。不替写核心代码，不提交、推送。
