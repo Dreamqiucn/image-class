@@ -108,3 +108,7 @@ day68 加上csv导出，matplotlib画折线图
 11.23 Day69+70
 day69 导出day68的权重pth，接入day69，专门用来预测是哪个图片的
 day70 收尾week10
+11.23-26 Day71 72 73 74
+day71 72 73 74准备图片素材
+11.26 Day75
+写了个分离train val test数据集的脚本
