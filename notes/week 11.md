@@ -1,0 +1,5 @@
+这个week主要是在整理图片素材
+之后写了个分train val test图片集的小脚本
+和matpltlib展示
+图片都是ai帮忙找的
+sources.csv也是

@@ -113,3 +113,6 @@ day70 收尾week10
 11.26 Day75 76
 day75 写了个分离train val test数据集的脚本
 day76 通过matpltlib展示图片数量，随机四张图片
+以及再次清洗与增加图片素材
+11.27 Day77 78
+day77 复盘这week11
