@@ -114,5 +114,7 @@ day70 收尾week10
 day75 写了个分离train val test数据集的脚本
 day76 通过matpltlib展示图片数量，随机四张图片
 以及再次清洗与增加图片素材
-11.27 Day77 78
+11.27 Day77 78 79
 day77 复盘这week11
+day78 认识resnet需要的主分支和跳跃分支
+day79 了解batchnorm，以及它的train eval模式
