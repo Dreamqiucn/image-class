@@ -551,10 +551,14 @@ notes/ai/
 
 日期：2026-11-27。按用户偏好采用精简单函数方案，用户在 `scripts/torch_week12.py` 编写 `day79()`，串联 `Conv2d(3, 8, 3, padding=1, bias=False)` 与 `nn.BatchNorm2d(8)`，实测 `bn.train()` 下输出保持 `[2, 8, 4, 4]` 且更新 `running_mean`，切换 `bn.eval()` 后单样本 `x[:1]` 顺利输出 `[1, 8, 4, 4]` 且 `running_mean` 保持冻结不变。Mac Conda Python（`torch 2.15.0`）实测通过。当日问答覆盖 ResNet 残差原理、深层 `7×7×512` 语义特征、梯度驱动卷积核学习以及 `Conv -> BN -> ReLU` 作用。详见 [Day 79 记录](records/day79-record.md)。
 
+## Day 80：残差连接 x + F(x)（按当前范围核心完成）
+
+日期：2026-11-27。用户在 `scripts/torch_week12.py` 编写 `day80()`，用 `nn.Sequential` 搭建 `Conv -> BN -> ReLU -> Conv -> BN` 主分支并独立保留 `x` 完成 `out = torch.relu(fx + x)`。过程中排查修复 `Conv2d` 第四个位置参数 `stride` 与 `padding=1` 遗漏及 `out.shape` 笔误，Mac Conda Python 实测输出三个 `torch.Size([2, 16, 56, 56])`，并准确解释第二个 `ReLU` 放在 `+ x` 之后是为了让残差 `fx` 可正可负。详见 [Day 80 记录](records/day80-record.md)。
+
 ## 当前接续点
 
-正式选题为“动漫人物识别”。Day 42 休息日未记为已进行。Day 64 Conv2d 核心练习已完成，Day 65 已补记逐层观察和展平练习。Day 66 至 Day 69 按实际范围核心完成，Day 70 轻量复盘已结束。Day 71 至 Day 76 已完成 29 类正式数据集收集、清洗、同源分组、划分与三大库分析，定稿数据集为 4,540 张、29 类、4,437 个 `group_id`（`train/val/test = 3,204 / 669 / 667`）。Day 77 第十周轻量复盘与数据封版已结束。Day 78 卷积维度复核与 Day 79 `BatchNorm` 状态切换均已完成。下一项为第 11 周 **Day 80**（残差连接 `x + F(x)`，理解主分支和跳跃分支），待用户开始。
+正式选题为“动漫人物识别”。Day 42 休息日未记为已进行。Day 64 Conv2d 核心练习已完成，Day 65 已补记逐层观察和展平练习。Day 66 至 Day 69 按实际范围核心完成，Day 70 轻量复盘已结束。Day 71 至 Day 76 已完成 29 类正式数据集收集、清洗、同源分组、划分与三大库分析，定稿数据集为 4,540 张、29 类、4,437 个 `group_id`（`train/val/test = 3,204 / 669 / 667`）。Day 77 第十周轻量复盘与数据封版已结束。Day 78 卷积维度复核、Day 79 `BatchNorm` 状态切换与 Day 80 残差连接均已完成。下一项为第 11 周 **Day 81**（手写同通道、同尺寸的 `BasicBlock` 并检查前向结果形状），待用户开始。
 
 第一周路径检查、统计复用、输出排除与跨工作目录运行已完成；用户已写 week 1.md 学习总结，完整使用说明按用户要求后续补充，不阻塞当前学习。
 
-第一周核心收尾完成；Day 8 按用户调整范围结束，Day 9 至 Day 17 按已记录范围完成，Day 18 跳过，Day 19 核心完成。Day 20 部分实现后由用户结束，未通过部分已归档，不强制补修。Day 21 聊天内轻量复盘已按用户要求结束，Day 22 NumPy 核心练习已完成，Day 23 五项新练习已完成，Day 24 至 Day 27 核心完成，Day 28 轻量复盘已结束，Day 29、Day 30 Pandas 核心练习完成，Day 31、Day 32 按用户指定的当前范围结束，Day 33、Day 34 核心练习完成，Day 35 复盘已结束，Day 36 至 Day 38 按现有范围结束，Day 39 核心完成，Day 40、Day 41 按现有范围结束，Day 43 至 Day 47 按现有范围结束，Day 48 核心完成，Day 49 休息结束，Day 50 至 Day 55 核心完成。Day 56 复盘已结束，Day 57 Dataset 核心完成。Day 58 DataLoader 已完成。Day 59 按当前范围结束，Day 60 已完成，Day 61 至 Day 62 核心完成，Day 63 轻量复盘已结束，Day 64 核心完成，Day 65 已补记逐层观察和展平练习，Day 66 核心完成，Day 67 按用户调整范围核心完成，Day 68 至 Day 69 核心完成，Day 70 轻量复盘已结束。Day 71 至 Day 79 已完成。下一项 Day 80，等待用户开始。不替写核心代码，不提交、推送。
+第一周核心收尾完成；Day 8 按用户调整范围结束，Day 9 至 Day 17 按已记录范围完成，Day 18 跳过，Day 19 核心完成。Day 20 部分实现后由用户结束，未通过部分已归档，不强制补修。Day 21 聊天内轻量复盘已按用户要求结束，Day 22 NumPy 核心练习已完成，Day 23 五项新练习已完成，Day 24 至 Day 27 核心完成，Day 28 轻量复盘已结束，Day 29、Day 30 Pandas 核心练习完成，Day 31、Day 32 按用户指定的当前范围结束，Day 33、Day 34 核心练习完成，Day 35 复盘已结束，Day 36 至 Day 38 按现有范围结束，Day 39 核心完成，Day 40、Day 41 按现有范围结束，Day 43 至 Day 47 按现有范围结束，Day 48 核心完成，Day 49 休息结束，Day 50 至 Day 55 核心完成。Day 56 复盘已结束，Day 57 Dataset 核心完成。Day 58 DataLoader 已完成。Day 59 按当前范围结束，Day 60 已完成，Day 61 至 Day 62 核心完成，Day 63 轻量复盘已结束，Day 64 核心完成，Day 65 已补记逐层观察和展平练习，Day 66 核心完成，Day 67 按用户调整范围核心完成，Day 68 至 Day 69 核心完成，Day 70 轻量复盘已结束。Day 71 至 Day 80 已完成。下一项 Day 81，等待用户开始。不替写核心代码，不提交、推送。

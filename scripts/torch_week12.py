@@ -52,5 +52,17 @@ def day79():
     out_eval=bn(conv(x[:1]))
     print(out_eval.shape)
     print(bn.running_mean,bn.running_var)
-
-day79()
+def day80():
+    x=torch.randn(2,16,56,56)
+    main_path=nn.Sequential(
+        nn.Conv2d(16,16,3,stride=1,padding=1,bias=False),
+        nn.BatchNorm2d(16),
+        nn.ReLU(),
+        nn.Conv2d(16,16,3,stride=1,padding=1,bias=False),
+        nn.BatchNorm2d(16)
+    )
+    fx=main_path(x)
+    out=torch.relu(fx+x)
+    print(x.shape,fx.shape,out.shape)
+    # print(out)
+day80()
