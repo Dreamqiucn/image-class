@@ -119,5 +119,6 @@ day77 复盘这week11
 day78 认识resnet需要的主分支和跳跃分支
 day79 了解batchnorm，以及它的train eval模式
 day80 串一遍残差完整流程
-11.28 Day81
+11.28 Day81 82
 day81 写block类来代替流程
+day82 把昨天的block改成可以自定义输入与输出通道的

@@ -84,4 +84,27 @@ def day81():
             return out
     block16=BasicBlock(16)
     print(block16(x).shape)
-day81()
+def day82():
+    x=torch.randn(2,16,56,56)
+    class BasicBlock(nn.Module):
+        def __init__(self,in_channels,out_channels):
+            super().__init__()
+            self.in_channels=in_channels
+            self.out_channels=out_channels
+            self.main_path=nn.Sequential(
+                nn.Conv2d(self.in_channels,self.out_channels,3,stride=2,padding=1,bias=False),
+                nn.BatchNorm2d(self.out_channels),
+                nn.ReLU(),
+                nn.Conv2d(self.out_channels,self.out_channels,3,stride=1,padding=1,bias=False),
+                nn.BatchNorm2d(self.out_channels))
+            self.skip_path=nn.Sequential(
+                nn.Conv2d(self.in_channels,self.out_channels,1,stride=2,padding=0,bias=False),
+                nn.BatchNorm2d(self.out_channels)
+            )
+        def forward(self,x):
+            self.x=x
+            out=torch.relu(self.main_path(self.x)+self.skip_path(self.x))
+            return out
+    block16_32=BasicBlock(16,32)
+    print(block16_32(x).shape)
+day82()
